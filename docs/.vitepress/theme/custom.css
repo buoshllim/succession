@@ -981,10 +981,14 @@ body {
   color: var(--vp-c-text-1);
   letter-spacing: -0.02em;
   margin: 2px 0 8px !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .member-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 12px;
   font-weight: 700;
   padding: 3px 10px;
@@ -992,9 +996,8 @@ body {
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
   letter-spacing: 0.02em;
-  margin-left: 10px;
-  margin-bottom: 12px;
-  vertical-align: middle;
+  flex-shrink: 0;
+  margin-bottom: 0;
 }
 
 .member-soul {
