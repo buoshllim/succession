@@ -992,7 +992,9 @@ body {
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
   letter-spacing: 0.02em;
+  margin-left: 10px;
   margin-bottom: 12px;
+  vertical-align: middle;
 }
 
 .member-soul {
