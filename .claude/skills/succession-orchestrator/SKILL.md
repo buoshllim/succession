@@ -53,6 +53,7 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 | `knowledge/leadership-philosophy.md` | 이사회 운영 철학·준비도 계산 기준 |
 | `knowledge/position-rules.md` | 포지션별 역량 기준·이사 가중치 테이블 + 선택된 국면 조정값 |
 | `knowledge/candidates/{코드명}.md` | 후보자별 프로파일 |
+| `knowledge/target-profiles/{포지션슬러그}.md` | 포지션별 이상적 후보 기준 (필수 역량·딜브레이커) |
 
 ### 0-2. 후보자 프로파일 확인 및 생성
 
