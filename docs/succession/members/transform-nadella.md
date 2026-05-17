@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Satya Nadella</h1>
     <p class="member-role">Transform · Culture</p>
+    <span class="member-badge">VWBE</span>
     <blockquote class="member-soul">"Know-it-all이 아닌 Learn-it-all이 되어라. 공감은 소프트 스킬이 아니라 가장 어려운 스킬이다."</blockquote>
   </div>
 </div>

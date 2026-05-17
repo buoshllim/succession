@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Warren Buffett</h1>
     <p class="member-role">Integrity · Value</p>
+    <span class="member-badge">신뢰 · 원칙</span>
     <blockquote class="member-soul">"사람을 뽑을 때 세 가지를 본다. 지성, 에너지, 그리고 integrity. 마지막이 없으면 앞의 둘이 오히려 독이 된다."</blockquote>
   </div>
 </div>

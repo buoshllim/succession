@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Sheryl Sandberg</h1>
     <p class="member-role">Lean · Org</p>
+    <span class="member-badge">구성원 행복</span>
     <blockquote class="member-soul">"앞으로 나아가라(Lean In). 테이블에 자리를 잡아라. 스스로를 과소평가하지 마라."</blockquote>
   </div>
 </div>

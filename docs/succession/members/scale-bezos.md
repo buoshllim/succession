@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Jeff Bezos</h1>
     <p class="member-role">Scale · System</p>
+    <span class="member-badge">시스템 경영</span>
     <blockquote class="member-soul">"비전에는 완고하고, 디테일에는 유연하라."</blockquote>
   </div>
 </div>

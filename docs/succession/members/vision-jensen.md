@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Jensen Huang</h1>
     <p class="member-role">Vision · Tech</p>
+    <span class="member-badge">SUPEX</span>
     <blockquote class="member-soul">"AI는 새로운 산업혁명이다. 모든 산업이 재발명될 것이다."</blockquote>
   </div>
 </div>

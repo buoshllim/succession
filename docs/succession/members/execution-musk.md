@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Elon Musk</h1>
     <p class="member-role">Execution · Break</p>
+    <span class="member-badge">패기</span>
     <blockquote class="member-soul">"첫 번째 원칙으로 생각하라. 유추로 생각하지 마라. 물리 법칙이 허용하는 것이 무엇인지에서 출발하라."</blockquote>
   </div>
 </div>

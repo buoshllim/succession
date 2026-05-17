@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Cathie Wood</h1>
     <p class="member-role">Innovation · Future</p>
+    <span class="member-badge">혁신 추구</span>
     <blockquote class="member-soul">"혁신은 선형적이지 않다. 변곡점을 남보다 먼저 보고, 모두가 아닐 때 확신을 가질 수 있어야 한다."</blockquote>
   </div>
 </div>

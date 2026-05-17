@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">JK</h1>
     <p class="member-role">이사회 의장 · CEO</p>
+    <span class="member-badge">SUPEX 추구</span>
     <blockquote class="member-soul">"AI 경쟁에서 도태되는 기업은 생존 자체를 걱정해야 할 것이다. 우리는 AI를 도구가 아니라 생존 조건으로 바라본다."</blockquote>
   </div>
 </div>

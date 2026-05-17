@@ -8,6 +8,7 @@ aside: false
   <div class="member-hero-info">
     <h1 class="member-name">Ray Dalio</h1>
     <p class="member-role">Principles · Risk</p>
+    <span class="member-badge">원칙 경영</span>
     <blockquote class="member-soul">"고통 + 성찰 = 성장. 이것이 인생에서 내가 배운 가장 중요한 공식이다."</blockquote>
   </div>
 </div>
