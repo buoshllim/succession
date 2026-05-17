@@ -5,6 +5,15 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 
 # 승계 이사회 오케스트레이터
 
+## 운영 원칙
+
+- **후보자 코드명 블라인드**: 후보자는 실명 대신 코드명(Alpha, Beta, Gamma 등)을 사용한다. 실제 커리어·스펙 데이터는 그대로 쓰되 이름만 코드명으로.
+- **심의 모드**: 개별 평가 (1인) + 비교 심의 (복수 후보자 동시 비교) 둘 다 지원.
+- **출력 정책**: 포지션 스텁(`/debate/{포지션}.md`) 덮어쓰기. 누적 없음.
+- **데이터 최소주의**: 코드명 + 현직 + 핵심 경력만 있어도 심의 진행. 부족한 정보는 이사들이 확신도↓로 표현.
+
+---
+
 ## 실행 모드 판단
 
 스킬 트리거 시 가장 먼저 컨텍스트를 확인한다:
@@ -17,25 +26,66 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 
 ## Phase 0: 컨텍스트 로드 + 후보자 데이터 수집
 
+### 0-0. 비즈니스 국면 확인 (필수 — 심의 시작 전 반드시 물어본다)
+
+사용자에게 아래 형식으로 질문한다:
+
+```
+현재 SK스퀘어가 처한 비즈니스 국면을 알려주세요. 복수 선택 가능합니다.
+
+1. AI·반도체 슈퍼사이클 — HBM·AI 투자 집행, NAV 극대화 구간
+2. NAV 할인 해소기 — Korea Discount 정책 + 주주환원 공약 집행
+3. 포트폴리오 재편기 — 비핵심 자산 정리, AI 포트폴리오 집중
+4. 신규 투자 개척기 — VC 딜소싱, 해외 AI 투자 확대
+5. 다운사이클 대응기 — 반도체 사이클 전환 시 리스크 관리
+
+해당하는 번호를 모두 알려주세요. (예: 1, 3)
+```
+
+사용자가 응답하면 선택된 국면을 기록하고 다음 단계로 진행한다.
+
 ### 0-1. Knowledge 파일 읽기
 
 | 파일 | 목적 |
 |------|------|
 | `knowledge/leadership-philosophy.md` | 이사회 운영 철학·준비도 계산 기준 |
-| `knowledge/position-rules.md` | 포지션별 역량 기준·이사 가중치 테이블 |
-| `knowledge/candidates/{후보자슬러그}.md` | 후보자별 프로파일·평가 이력 |
+| `knowledge/position-rules.md` | 포지션별 역량 기준·이사 가중치 테이블 + 선택된 국면 조정값 |
+| `knowledge/candidates/{코드명}.md` | 후보자별 프로파일 |
 
-### 0-2. 후보자 데이터 수집
+### 0-2. 후보자 프로파일 확인 및 생성
 
-오케스트레이터가 직접 수행하거나 `references/data-fetcher.md` 참고:
-- LinkedIn WebFetch — 공개 프로파일 수집 (URL이 있는 경우)
-- 뉴스 검색 — 후보자명 + 현 회사명으로 최근 6개월 뉴스
-- DART 공시 — 상장사 임원인 경우 임원 현황·주식 보유
-- candidates 파일의 사내 서베이·인터뷰 기록 통합
+**파일이 있는 경우:** `knowledge/candidates/{코드명}.md` 읽기
+
+**파일이 없는 경우:** 사용자가 제공한 자유 텍스트를 파싱해서 아래 형식으로 파일 생성:
+
+```markdown
+# {코드명} — {포지션} 후보자
+
+> 후보자 유형: 내부 임원 / 계열사 / 외부
+> 데이터 품질: 높음 / 중간 / 낮음
+
+## 기본 정보
+- **현직**: {직함 · 재직기간}
+- **추천인**: (있는 경우)
+
+## 핵심 경력
+| 기간 | 역할 | 주요 성과 |
+|------|------|---------|
+| ... | ... | ... |
+
+## 강점
+- ...
+
+## 우려
+- ...
+
+## 심의 이력
+없음 (최초 등록)
+```
 
 데이터 품질 가드레일:
-- 데이터가 매우 부족하면 (이름+직함만) → Telegram 알림 + 확신도 낮음으로 진행
-- 외부 후보자 공개 데이터 없음 → CHRO에게 LinkedIn URL 또는 추가 정보 요청
+- 현직 + 경력 1개 이상이면 진행 (낮음으로 기록)
+- 코드명만 있으면 → 사용자에게 최소 정보 요청
 
 ---
 
@@ -43,33 +93,36 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 
 **실행 모드: 서브에이전트 (병렬)**
 
-포지션 유형에 따라 가중치를 확인한다 (`knowledge/position-rules.md`).
+`knowledge/position-rules.md`에서 해당 포지션의 가중치를 확인한다.
 가중치 0.00인 이사는 Phase 1에서 제외한다.
 
-9개 이사 에이전트를 병렬로 호출한다. 각 에이전트: `.claude/agents/board-{name}.md`
+선택된 국면의 조정값을 BASE_WEIGHTS에 합산한 **최종 가중치**로 이사 영향력을 계산한다.
 
+이사 에이전트 목록 (`.claude/agents/board-{key}.md`):
 ```
-[Vision 그룹]     board-vision-jensen
-[Scale 그룹]      board-scale-bezos
-[Integrity 그룹]  board-integrity-buffett
-[Principles 그룹] board-principles-dalio
-[Transform 그룹]  board-transform-nadella
-[Innovation 그룹] board-innovation-wood
-[Performance 그룹] board-performance-welch
-[Contraverse 그룹] board-contraverse-munger
-[Execution 그룹]  board-execution-musk      ← 가중치 0.00이면 제외
-[Lean 그룹]       board-lean-sandberg
+board-vision-jensen
+board-scale-bezos
+board-integrity-buffett
+board-principles-dalio
+board-transform-nadella
+board-innovation-wood
+board-performance-welch
+board-inversion-munger
+board-execution-musk      ← 가중치 0.00이면 제외
+board-lean-sandberg
 ```
 
-각 에이전트에게 전달하는 데이터 패키지:
-- Phase 0에서 수집한 후보자 프로파일 전체
-- knowledge/leadership-philosophy.md 요약
-- 포지션 정보 + 이 이사의 가중치
-- 현재 비즈니스 국면 (position-rules.md 참고)
+각 에이전트에게 전달:
+- 후보자 프로파일
+- `knowledge/leadership-philosophy.md` 요약
+- 포지션 정보 + 이 이사의 최종 가중치
+- 선택된 비즈니스 국면
 
-각 에이전트 출력: 스탠스 + 확신도 + 핵심 논거 2~3문장
+각 에이전트 출력: 스탠스(🟢/🟡/🔴) + 확신도 + 핵심 논거 2~3문장
 
 타임아웃: 에이전트별 120초. 초과 시 "의견 없음" 처리.
+
+**비교 심의 모드 (복수 후보자):** 각 이사는 후보자별로 스탠스를 제시하고, 국면별 최적 후보 의견을 포함한다.
 
 ---
 
@@ -83,21 +136,14 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 {이사명}: {스탠스 이모지} {확신도} — {핵심 근거 1문장}
 ```
 
-예시:
-```
-Vision·Jensen: 🟢 높음 — AI 투자 전략 수립 경험 탁월, DT 전환 실행력 검증됨
-Integrity·Buffett: 🟡 중간 — 성과는 있으나 integrity 검증 데이터 부족
-Contraverse·Munger: 🔴 높음 — 과거 팀 실패 패턴 반복 징후, 리스크 높음
-```
-
-**규칙:**
+규칙:
 - 이사당 80토큰 이하로 압축
-- 이후 모든 에이전트 호출(Round 2, 토론)에는 이 compact summary만 전달
-- 원본 Round 1 출력은 오케스트레이터가 로컬 변수로만 보관 — Phase 4 리포트 작성 시에만 참조
+- 이후 에이전트 호출에는 이 compact summary만 전달
+- 원본은 오케스트레이터 로컬 변수로만 보관 — Phase 4 작성 시에만 참조
 
 ---
 
-## Phase 2: 이사회 실시간 토론 (Round 1 → Round 2)
+## Phase 2: 이사회 실시간 토론 (Round 2)
 
 **실행 모드: 에이전트 팀 (하네스)**
 
@@ -107,11 +153,6 @@ Contraverse·Munger: 🔴 높음 — 과거 팀 실패 패턴 반복 징후, 리
 TeamCreate(
   team_name="succession-board",
   members=["ceo-jk"] + 가중치 0.00 제외한 활성 이사 목록
-  // 예시 (CIO): ["ceo-jk", "board-vision-jensen", "board-scale-bezos",
-  //              "board-integrity-buffett", "board-principles-dalio",
-  //              "board-transform-nadella", "board-innovation-wood",
-  //              "board-performance-welch", "board-contraverse-munger",
-  // 예시 (CAIO): 위 + "board-execution-musk"
 )
 ```
 
@@ -120,7 +161,7 @@ TeamCreate(
 Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **최대 4개** 긴장 쌍 식별
 
 긴장 쌍 우선순위:
-1. 고가중치 이사 간 충돌 (예: Vision·Jensen vs Integrity·Buffett)
+1. 고가중치 이사 간 충돌
 2. 준비도 반대 의견 (🟢 vs 🔴)
 3. 중간 확신도 이사 — 토론으로 스탠스 변화 가능성 높음
 
@@ -147,12 +188,14 @@ Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **�
 ### 3-1. 이사 가중 투표 집계
 
 ```
-raw_score = Σ(이사 스탠스 점수 × 가중치)
+raw_score = Σ(이사 스탠스 점수 × 최종가중치)
 준비도   = (raw_score + 1) / 2 → % 표기
 동방향   = 최종 스탠스 동일 이사 수 (N/활성 이사 수)
 ```
 
 스탠스 점수: 🟢 Ready Now = +1, 🟡 Ready in 2Y = 0, 🔴 Not Ready = -1
+
+**비교 심의:** 후보자별로 각각 집계. 국면별 최적 후보도 도출.
 
 ### 3-2. JK 최종 선언
 
@@ -161,12 +204,10 @@ raw_score = Σ(이사 스탠스 점수 × 가중치)
 전달 내용:
 - Phase 1.5 compact summary
 - Phase 2 토론 핵심 쟁점 요약
-- 3-1 집계 결과 (raw_score, 준비도 %, 동방향)
-- 현재 비즈니스 국면 (position-rules.md 참고)
+- 3-1 집계 결과
+- 선택된 비즈니스 국면
 
-JK는 5단계 필터를 적용하여:
-- 최종 준비도 단계 확정 (이사 합의 추인 또는 오버라이드)
-- **의장 최종 코멘트** 작성 (2~3문장)
+JK는 5단계 필터 적용 → 최종 준비도 확정 + 의장 코멘트 (2~3문장)
 
 ---
 
@@ -174,38 +215,46 @@ JK는 5단계 필터를 적용하여:
 
 **`references/output-writer.md`를 반드시 읽고 그 형식을 따른다.**
 
-섹션 순서:
+### 출력 정책
+- 파일 위치: `docs/succession/debate/{포지션슬러그}.md` **덮어쓰기** (누적 없음)
+- 포맷: Vue 컴포넌트 형식, 마지막 줄 `<BoardChat v-bind="debate" />`
+
+### 섹션 순서
 1. 헤더 (포지션 + 심의 배너)
-2. 후보자 핵심 데이터
+2. 후보자 핵심 데이터 (코드명으로)
 3. 이사별 스탠스 요약
 4. JK 의장 최종 선언
 5. 핵심 토론 쟁점
-6. 행동 지침 (선임 권고 / 육성 계획 / 외부 영입 검토)
+6. 행동 지침
 7. 하단 링크
 
-debate 파일은 **반드시 Vue 컴포넌트 형식으로 신규 작성**한다. 마지막 줄은 반드시 `<DebateChat v-bind="debate" />`.
+**비교 심의:** 후보자별 스탠스 비교 + 국면별 최적 후보 선언 포함.
+> 향후: 스파이더 차트 컴포넌트 추가 예정 (포지션별 핵심 역량 축 기준 후보자 비교)
 
 ---
 
 ## Phase 5: 배포
 
-1. `git add docs/succession/ docs/.vitepress/config.mts && git commit -m "feat: {후보자명} {포지션} {날짜} 이사회 심의 결과" && git push`
-2. Vercel 자동 배포 확인
+```
+git add docs/succession/ && git commit -m "feat: {코드명} {포지션} {날짜} 이사회 심의 결과" && git push
+```
 
 ---
 
-## 테스트 시나리오
+## 트리거 예시
 
-**정상 흐름:**
-- 입력: "CIO 후보자 김철수, 이영희, 박민준 이사회 심의해줘"
-- Phase 0: candidates/ 파일 읽기 + LinkedIn 수집
-- Phase 1: 9개 이사 병렬 평가
-- Phase 1.5: compact summary 압축
-- Phase 2: 팀 구성 → 긴장쌍 토론
-- Phase 3: 집계 → JK 선언
-- Phase 4: MD + Vue 파일 작성
-- Phase 5: git push
+```
+# 개별 심의
+"Alpha 후보 CIO 심의해줘"
+"CIO Alpha 이사회 열어"
 
-**에러 흐름:**
-- 후보자 candidates 파일 없음 → "데이터 없음, 확신도 낮음으로 평가 진행" 알림 후 계속
-- 이사 타임아웃 → "의견 없음" 처리, 나머지 이사 결과로 집계
+# 비교 심의
+"CIO 후보 Alpha, Beta, Gamma 비교 심의해줘"
+
+# 프로파일 생성 후 심의
+"CIO 후보 Delta 심의해줘.
+현직: SK텔레콤 AI사업본부장, 8년차
+경력: AI 서비스 3개 런칭, 연매출 800억 달성
+강점: 실행력, 기술-비즈니스 연결
+우려: 투자 판단 경험 없음"
+```
