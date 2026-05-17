@@ -7,8 +7,7 @@ aside: false
   <img src="/board/inversion-munger.png" class="member-avatar" alt="Charlie Munger" />
   <div class="member-hero-info">
     <h1 class="member-name">Charlie Munger</h1>
-    <p class="member-role">Inversion · Bias</p>
-    <span class="member-badge">리스크 감지</span>
+    <p class="member-role">Inversion · Bias <span class="member-badge">리스크 감지</span></p>
     <blockquote class="member-soul">"뒤집어라, 항상 뒤집어라. 성공 조건이 아니라 실패 조건을 먼저 찾아라."</blockquote>
   </div>
 </div>

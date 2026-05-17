@@ -7,8 +7,7 @@ aside: false
   <img src="/board/performance-welch.png" class="member-avatar" alt="Jack Welch" />
   <div class="member-hero-info">
     <h1 class="member-name">Jack Welch</h1>
-    <p class="member-role">Performance · People</p>
-    <span class="member-badge">성과 탁월</span>
+    <p class="member-role">Performance · People <span class="member-badge">성과 탁월</span></p>
     <blockquote class="member-soul">"리더가 되기 전에는 성공이 자신을 성장시키는 것이다. 리더가 된 후에는 성공이 다른 사람을 성장시키는 것이다."</blockquote>
   </div>
 </div>
