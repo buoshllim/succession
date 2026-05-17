@@ -796,37 +796,32 @@ body {
 }
 
 .guru-card-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
   object-position: center top;
   display: block;
-  margin: 18px auto 0;
-  border: 2px solid var(--vp-c-divider);
 }
 
 .guru-card-body {
-  padding: 10px 14px 16px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  align-items: center;
-  text-align: center;
 }
 
 .guru-card-name {
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--vp-c-text-3);
-  letter-spacing: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.02em;
 }
 
 .guru-card-role {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  letter-spacing: -0.01em;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--vp-c-text-3);
+  letter-spacing: 0;
 }
 
 .guru-card-skms {
