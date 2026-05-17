@@ -811,29 +811,30 @@ body {
 }
 
 .guru-card-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  letter-spacing: -0.02em;
-}
-
-.guru-card-role {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   color: var(--vp-c-text-3);
   letter-spacing: 0;
 }
 
+.guru-card-role {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
 .guru-card-skms {
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 3px 9px;
   border-radius: 6px;
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
   letter-spacing: 0.02em;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .guru-card-quote {
