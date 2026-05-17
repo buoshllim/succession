@@ -58,7 +58,12 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 
 **파일이 있는 경우:** `knowledge/candidates/{코드명}.md` 읽기
 
-**포지션 단위 트리거 시:** `knowledge/candidates/` 내 모든 파일을 스캔 → 헤더에 `— {포지션} 후보자` 패턴이 있는 파일만 로드. 후보자가 0명이면 사용자에게 "등록된 후보자가 없습니다" 알림.
+**포지션 단위 트리거 시:** `knowledge/candidates/` 내 모든 파일을 스캔 → frontmatter의 `positions[].role == {포지션} && positions[].status == active` 인 파일만 로드. 후보자가 0명이면 사용자에게 "등록된 후보자가 없습니다" 알림.
+
+status 값:
+- `active` — 현재 심의 대상 (로드 대상)
+- `inactive` — 고려 중단 (스킵)
+- `placed` — 선임 완료 (스킵)
 
 **파일이 없는 경우:** 사용자가 제공한 자유 텍스트를 파싱해서 아래 형식으로 파일 생성:
 
