@@ -5,6 +5,8 @@ positions:
     status: active
 type: 내부 임원
 data_quality: 중간
+level: 부장
+years_total: 15
 ---
 
 # Alpha — CIO 후보자

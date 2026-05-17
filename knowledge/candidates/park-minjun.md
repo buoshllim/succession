@@ -5,6 +5,8 @@ positions:
     status: active
 type: 외부 후보
 data_quality: 중간
+level: MD급
+years_total: 18
 ---
 
 # Gamma — CIO 후보자

@@ -5,6 +5,8 @@ positions:
     status: active
 type: 계열사 임원
 data_quality: 높음
+level: 전무
+years_total: 20
 ---
 
 # Beta — CIO 후보자
