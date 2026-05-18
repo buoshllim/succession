@@ -76,15 +76,16 @@ const debate = {
     {
       type: "bubble",
       board: "vision-jensen",
-      text: "이사 발언... [후보자 전원에 대한 스탠스를 발언 안에 포함]",
+      text: "이사 발언... 후보자 전원에 대한 스탠스를 자연어 발언으로 포함. 예: 'A는 🟢 — 이유. B는 🟡 — 짧은 이유. C·D 🟡. E 🔴 — 이유.'",
       // ✅ Round 1 bubble 필수 규칙:
-      // - 심의 대상 후보자 전원(최대 5~6명)에 대해 스탠스를 명시할 것
-      // - 핵심 논거는 1~2명에 집중, 나머지는 짧게라도 언급
-      // - 예: "A 🟢 — 이유. B 🟡 — 짧은 이유. C·D 🟡. E 🔴 — 이유."
+      // 1. 심의에 투표한 이사 전원이 각자 bubble을 가져야 한다 (누락 금지)
+      // 2. 각 이사는 심의 대상 후보자 전원(최대 5~6명)에 대해 스탠스를 명시할 것
+      // 3. 핵심 논거는 1~2명에 집중, 나머지는 짧게라도 언급
+      // ⛔ 특정 이사가 Round 1에 아예 등장하지 않는 것 금지
       // ⛔ 1순위 후보자만 언급하고 나머지를 침묵하는 것 금지
       // ⛔ "[압축]" 등 비표준 요약 포맷 사용 금지 — 반드시 자연어 발언 형태로 작성
     },
-    // ... 나머지 이사들
+    // ... 나머지 이사들 (투표 참여 이사 전원)
     { type: "section", label: "── Round 2: 긴장 쌍 토론 ──" },
     {
       type: "exchange",
@@ -137,12 +138,25 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 }
 ```
 
+### exchange 구조 필수 규칙
+```js
+// ✅ 반드시 JK 의장 질문으로 시작
+messages: [
+  { speaker: "JK", text: "의장 질문 — 이 exchange의 긴장 쌍을 설명하고 이사들에게 논쟁을 유도..." },
+  { speaker: "Vision·Jensen Huang", board: "vision-jensen", text: "..." },
+  // ...
+]
+
+// ⛔ JK 없이 이사 발언으로 바로 시작하는 것 금지
+// ⛔ exchange 내 이사 메시지에 board: 필드 누락 금지 (JK만 board: 없음)
+```
+
 ### exchange 내 message 객체
 ```js
-// ✅ JK 메시지
+// ✅ JK 메시지 (board: 없음)
 { speaker: "JK", text: "..." }
 
-// ✅ 이사 메시지 (speaker는 반드시 아래 human-readable 이름 사용)
+// ✅ 이사 메시지 — speaker와 board: 모두 필수
 { speaker: "Vision·Jensen Huang",  board: "vision-jensen",     text: "..." }
 { speaker: "Scale·Jeff Bezos",     board: "scale-bezos",       text: "..." }
 { speaker: "Integrity·Buffett",    board: "integrity-buffett",  text: "..." }
@@ -161,6 +175,7 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 // ⛔ speaker 이름에 공백 포함된 중점 사용 금지 (예: speaker: "Vision · Jensen Huang" ❌)
 // ⛔ speaker에 풀 이름 사용 금지 (예: "Integrity·Warren Buffett" ❌, "Inversion·Charlie Munger" ❌)
 //    → 반드시 위 10개 canonical 이름 중 정확히 일치하는 것만 사용
+// ⛔ 이사 메시지에 board: 필드 누락 금지
 ```
 
 ### closing 블록
@@ -173,7 +188,7 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 
 ### section 블록 label 형식
 ```js
-// ✅ 정확히 이 형식만 허용 (── 앞뒤 공백 포함)
+// ✅ 허용되는 section 라벨은 정확히 아래 3개뿐 (── 앞뒤 공백 포함)
 { type: "section", label: "── Round 1: 이사 초기 평가 ──" }
 { type: "section", label: "── Round 2: 긴장 쌍 토론 ──" }
 { type: "section", label: "── Round 2 이후 이사 재발언 ──" }
@@ -182,6 +197,9 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 // "Round 1 — 이사 독립 평가"  ❌
 // "Round 1: 이사 초기 평가"   ❌ (── 없음)
 // "Phase 1"                   ❌
+// "── Round 1 압축 요약 ──"   ❌ (임의 섹션 추가 금지)
+// "재발언 — 스탠스 최종 확인" ❌
+// 위 3개 외 어떤 이름의 section도 추가 금지
 ```
 
 ### finalDecision 형식
