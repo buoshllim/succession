@@ -21,7 +21,7 @@ aside: false
       <div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:83%"></div></div>
       <span class="readiness-val">83%</span>
     </div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 박진우</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 박진우</div>
     <div class="position-card-footer">
       <a href="/succession/2026-05-18-1423-cio" class="position-btn">💬 최신 심의</a>
       <a href="/succession/list?position=CIO" class="position-btn">📋 전체 이력</a>
@@ -33,7 +33,7 @@ aside: false
     <div class="position-card-name">투자MD</div>
     <div class="position-card-role">투자센터 MD</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:89%"></div></div><span class="readiness-val">89%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 윤재혁</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 윤재혁</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1500-md" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=투자MD" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -42,7 +42,7 @@ aside: false
     <div class="position-card-name">AI혁신담당</div>
     <div class="position-card-role">Chief AI Innovation Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:82%"></div></div><span class="readiness-val">82%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 오현우</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 오현우</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1515-caio" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=AI혁신담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -51,7 +51,7 @@ aside: false
     <div class="position-card-name">AI/DT담당</div>
     <div class="position-card-role">AI·디지털전환 총괄</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:97%"></div></div><span class="readiness-val">97%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 장민호</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 장민호</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1520-aidt" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=AI%2FDT담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -60,7 +60,7 @@ aside: false
     <div class="position-card-name">정보보호담당</div>
     <div class="position-card-role">Chief Information Security Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:87%"></div></div><span class="readiness-val">87%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 문성호</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 문성호</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1550-ciso" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=정보보호담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -69,7 +69,7 @@ aside: false
     <div class="position-card-name">전략담당</div>
     <div class="position-card-role">Chief Strategy Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:95%"></div></div><span class="readiness-val">95%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 고은서</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 고은서</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1525-cso" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=전략담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -78,7 +78,7 @@ aside: false
     <div class="position-card-name">재무담당</div>
     <div class="position-card-role">Chief Financial Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 심재원</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 심재원</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1530-cfo" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=재무담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -87,7 +87,7 @@ aside: false
     <div class="position-card-name">법무담당</div>
     <div class="position-card-role">Chief Legal Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 허준영</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 허준영</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1535-clo" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=법무담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -96,7 +96,7 @@ aside: false
     <div class="position-card-name">IR담당</div>
     <div class="position-card-role">Chief Investor Relations Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 엄태윤</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 엄태윤</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1540-ciro" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=IR담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
@@ -105,7 +105,7 @@ aside: false
     <div class="position-card-name">HR담당</div>
     <div class="position-card-role">Chief Human Resources Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
-    <div class="position-card-date">2026-05-18, 1순위 ; 손민수</div>
+    <div class="position-card-date">2026-05-18, 1순위 : 손민수</div>
     <div class="position-card-footer"><a href="/succession/2026-05-18-1545-chro" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=HR담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
