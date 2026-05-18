@@ -143,7 +143,11 @@ board-lean-sandberg
 - 포지션 정보 + 이 이사의 최종 가중치
 - 선택된 비즈니스 국면
 
-각 에이전트 출력: 스탠스(🟢/🟡/🔴) + 확신도 + 핵심 논거 2~3문장
+각 에이전트 출력 — **반드시 아래 품질 기준을 충족해야 한다:**
+- 스탠스(🟢/🟡/🔴) + 확신도 명시
+- **자신의 고유 투자 철학·관점에서** 후보자를 평가 (3~5문장, 단순 요약 금지)
+- 다른 후보자와 명시적 비교 포함 (왜 이 후보인가, 왜 저 후보가 아닌가)
+- 선택된 비즈니스 국면이 판단에 어떻게 영향을 미쳤는지 언급
 
 타임아웃: 에이전트별 120초. 초과 시 "의견 없음" 처리.
 
@@ -194,10 +198,13 @@ Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **�
 
 각 긴장 쌍마다:
 1. JK(의장)가 `SendMessage`로 긴장 쌍 A에게 B의 논거를 전달하며 반박 요청
-2. A가 응답 → B가 최종 입장 확정
-3. **방관자 이사 1명 지목** — 논점과 가장 관련성 높은 미발언 이사에게 의견 요청
+2. A가 응답 (구체적 반론, 3~4문장)
+3. B가 재반론 (A의 논거에 직접 반응)
+4. **JK가 중재 개입** — 논점을 좁히거나 절충 방향 제시
+5. **방관자 이사 1명 지목** — 논점과 가장 관련성 높은 이사에게 의견 요청 (새 관점 투입)
+6. 긴장 쌍 이사 중 1명이 스탠스 변경 가능 (조건부 동의 포함)
 
-활성화된 이사 전원 최소 1회 발언 목표.
+각 exchange는 **최소 6~8개 messages**를 포함해야 한다.
 
 모든 토론 내역은 `_workspace/debate-log.md`에 실시간 저장한다.
 
@@ -205,6 +212,19 @@ Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **�
 
 토론 결과 반영 → 각 이사 최종 스탠스 확정
 전달 컨텍스트: compact summary + 본인 관련 토론 내용만
+
+---
+
+## Phase 2.5: Round 2 이후 이사 재발언
+
+**Round 2 토론을 지켜본 이사 6~7명이 추가 발언한다.** (bubble 형식)
+
+재발언 규칙:
+- Round 2 토론에서 제기된 논점에 반응하는 내용 포함 (단순 반복 금지)
+- 일부 이사는 스탠스 변경 가능 (`changed: 'up'` 또는 `changed: 'down'`)
+- 스탠스 변경 시 반드시 변경 이유 명시
+- 발언하지 않은 이사 우선 지목, 재발언 시에도 자신의 고유 관점 유지
+- 2~3문장으로 간결하게 (Round 1보다 짧게)
 
 ---
 
@@ -258,21 +278,56 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
 - 파일 위치: `docs/succession/{YYYY-MM-DD}-{HHMM}-{포지션슬러그}.md` **신규 생성** (누적됨)
 - 포맷: Vue 컴포넌트 형식, 마지막 줄 `<PositionDebate v-bind="debate" />`
 
-### 섹션 순서
-1. 헤더 (포지션 + 심의 배너)
-2. 후보자 핵심 데이터 (코드명으로)
-3. 이사별 스탠스 요약
-4. JK 의장 최종 선언
-5. 핵심 토론 쟁점
-6. 행동 지침
-7. 하단 링크
+### 출력 포맷: PositionDebate 컴포넌트
 
-**비교 심의:** 후보자별 스탠스 비교 + 국면별 최적 후보 선언 포함.
-> 향후: 스파이더 차트 컴포넌트 추가 예정 (포지션별 핵심 역량 축 기준 후보자 비교)
+`references/output-writer.md`의 컴포넌트 형식 참고. blocks 배열은 **반드시 아래 순서로** 구성한다:
+
+```
+1. { type: "section", label: "── Round 1: 이사 초기 평가 ──" }
+   → 활성 이사 전원 bubble (스탠스 포함, 각 3~5문장)
+
+2. { type: "section", label: "── Round 2: 긴장 쌍 토론 ──" }
+   → exchange (긴장 쌍별, messages 6~8개 이상, JK 중재 포함)
+
+3. { type: "section", label: "── Round 2 이후 이사 재발언 ──" }
+   → bubble 6~7명 (Round 2 논점 반응, 일부 changed 포함)
+
+4. { type: "closing", text: "..." }
+   → JK 최종 정리 + 1순위 후보자 의결 선언
+```
+
+**비교 심의:** candidates 배열에 후보자 전원 포함 (readiness, readinessScore, radar 스코어, jkComment).
 
 ---
 
 ## Phase 5: 배포
+
+### 5-1. docs/succession/list.md 업데이트
+
+`전체 심의 이력` 테이블에 새 행 추가:
+
+```markdown
+| {YYYY-MM-DD} | {HH:MM} | {포지션명} | {1순위 후보자명} | {🟢/🟡/🔴 준비도} | [→](/succession/{파일명}) |
+```
+
+### 5-2. docs/succession/board/index.md 업데이트
+
+해당 포지션 카드를 심의 결과로 갱신:
+- `readiness-pill`: pending → ready-now / ready-2y / not-ready
+- `readiness-bar-fill width`: 0% → {readinessScore × 100}%
+- `readiness-val`: — → {준비도}%
+- `position-card-date`: 심의 기록 없음 → {날짜} · {1순위 후보자}
+- 최신 심의 링크: `/succession/debate/{슬러그}` → `/succession/{파일명}`
+
+### 5-3. docs/.vitepress/config.mts 업데이트
+
+`/succession/` 사이드바 items에 새 심의 페이지 추가 (최신 4개 유지):
+
+```
+{ text: '{포지션} — {YYYY-MM-DD}', link: '/succession/{파일명}' }
+```
+
+### 5-4. Git 커밋 및 배포
 
 ```
 git add docs/succession/ docs/.vitepress/config.mts && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push

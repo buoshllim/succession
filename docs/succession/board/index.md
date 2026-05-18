@@ -13,18 +13,18 @@ aside: false
 
   <div class="position-card">
     <div class="position-card-header">
-      <span class="readiness-pill pending">⬜ 심의 대기</span>
+      <span class="readiness-pill ready-now">🟢 Ready Now</span>
     </div>
     <div class="position-card-name">CIO</div>
     <div class="position-card-role">최고투자책임자</div>
     <div class="readiness-wrap">
-      <div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div>
-      <span class="readiness-val">—</span>
+      <div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:83%"></div></div>
+      <span class="readiness-val">83%</span>
     </div>
-    <div class="position-card-date">심의 기록 없음</div>
+    <div class="position-card-date">2026-05-18 · 박진우</div>
     <div class="position-card-footer">
-      <a href="/succession/debate/cio" class="position-btn">💬 회의록</a>
-      <a href="/succession/debate/cio" class="position-btn">📋 이력</a>
+      <a href="/succession/2026-05-18-1423-cio" class="position-btn">💬 최신 심의</a>
+      <a href="/succession/list" class="position-btn">📋 전체 이력</a>
     </div>
   </div>
 
