@@ -60,7 +60,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const POSITIONS = [
   { id: '',     label: '전체' },
@@ -96,12 +97,23 @@ const selectedPosition = ref('')
 const selectedDate     = ref('')
 const currentPage      = ref(1)
 
+const route = useRoute()
 const positionChips = POSITIONS
 
 function selectPosition(id) {
   selectedPosition.value = id
   currentPage.value = 1
 }
+
+watch(
+  () => route.query.position,
+  (p) => {
+    const val = typeof p === 'string' ? p : ''
+    selectedPosition.value = POSITIONS.some(pos => pos.id === val) ? val : ''
+    currentPage.value = 1
+  },
+  { immediate: true }
+)
 
 function readinessClass(r) {
   if (r.includes('Ready Now')) return 'pill-ready-now'
