@@ -1654,9 +1654,10 @@ body {
 .readiness-wrap { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
 .readiness-val { font-size: 13px; font-weight: 600; color: var(--vp-c-text-1); min-width: 36px; }
 .position-card-date { font-size: 12px; color: var(--vp-c-text-3); margin-bottom: 12px; }
-.position-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.position-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 .card-date { font-size: 11px; color: var(--vp-c-text-3); font-variant-numeric: tabular-nums; letter-spacing: 0.2px; }
 .card-pick { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: var(--vp-c-text-1); }
+.card-second-name { font-size: 13px; font-weight: 700; color: var(--vp-c-text-1); }
 .card-pick-label {
   font-size: 10px;
   font-weight: 700;
@@ -1667,22 +1668,10 @@ body {
   letter-spacing: 0.3px;
 }
 
-/* 2순위 행 */
-.position-card-second {
-  display: flex; align-items: center; gap: 6px; margin-bottom: 12px;
-}
-.card-second-name { font-size: 12px; font-weight: 600; color: var(--vp-c-text-2); }
-
 /* 2순위 배지 색상 */
-.card-pick-label.rank2.ready-now {
-  color: #16A34A; background: rgba(34,197,94,0.12);
-}
-.card-pick-label.rank2.ready-2y {
-  color: #D97706; background: rgba(245,158,11,0.12);
-}
-.card-pick-label.rank2.not-ready {
-  color: #DC2626; background: rgba(239,68,68,0.1);
-}
+.card-pick-label.rank2.ready-now  { color: #16A34A; background: rgba(34,197,94,0.12); }
+.card-pick-label.rank2.ready-2y   { color: #D97706; background: rgba(245,158,11,0.12); }
+.card-pick-label.rank2.not-ready  { color: #DC2626; background: rgba(239,68,68,0.1); }
 .position-card-footer { display: flex; gap: 8px; }
 /* 이사회 심의 기준 아코디언 */
 details.wb-guide {
