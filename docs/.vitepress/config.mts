@@ -28,6 +28,14 @@ export default defineConfig({
           text: '심의 이력',
           items: [
             { text: '전체 심의 이력 →', link: '/succession/list' },
+            { text: '정보보호담당 — 2026-05-18', link: '/succession/2026-05-18-1550-ciso' },
+            { text: 'HR담당 — 2026-05-18', link: '/succession/2026-05-18-1545-chro' },
+            { text: 'IR담당 — 2026-05-18', link: '/succession/2026-05-18-1540-ciro' },
+            { text: '법무담당 — 2026-05-18', link: '/succession/2026-05-18-1535-clo' },
+            { text: '재무담당 — 2026-05-18', link: '/succession/2026-05-18-1530-cfo' },
+            { text: '전략담당 — 2026-05-18', link: '/succession/2026-05-18-1525-cso' },
+            { text: 'AI/DT담당 — 2026-05-18', link: '/succession/2026-05-18-1520-aidt' },
+            { text: 'AI혁신담당 — 2026-05-18', link: '/succession/2026-05-18-1515-caio' },
             { text: '투자MD — 2026-05-18', link: '/succession/2026-05-18-1500-md' },
             { text: 'CIO — 2026-05-18', link: '/succession/2026-05-18-1423-cio' },
           ]
