@@ -236,13 +236,48 @@ blocks: [
 
 ---
 
+## board/index.md 카드 구조 — 심의 완료 시 업데이트
+
+심의 완료 후 `docs/succession/board/index.md`의 해당 포지션 카드를 아래 구조로 업데이트한다.
+
+```html
+<div class="position-card">
+  <!-- ✅ header: readiness-pill 반드시 포함. 빈 div 절대 금지 — 빌드 오류 원인 -->
+  <div class="position-card-header">
+    <span class="readiness-pill ready-now">🟢 Ready Now</span>
+  </div>
+  <div class="position-card-name">{포지션명}</div>
+  <div class="position-card-role">{역할명}</div>
+  <div class="readiness-wrap">
+    <div class="readiness-bar" style="flex:1">
+      <div class="readiness-bar-fill" style="width:{1순위 readinessScore × 100}%"></div>
+    </div>
+    <span class="readiness-val">{점수}%</span>
+  </div>
+  <!-- ✅ 1순위 + 2순위 한 줄. readiness pill은 meta 안에 넣지 않는다 -->
+  <div class="position-card-meta">
+    <span class="card-date">{YYYY-MM-DD}</span>
+    <span class="card-pick"><span class="card-pick-label">1순위</span> {1순위 이름}</span>
+    <span class="card-pick-label rank2 {2순위 readiness class}">2순위</span>
+    <span class="card-second-name">{2순위 이름}</span>
+  </div>
+  <div class="position-card-footer">
+    <a href="/succession/{YYYY-MM-DD}-{HHMM}-{slug}" class="position-btn">💬 최신 심의</a>
+    <a href="/succession/list?position={포지션명}" class="position-btn">📋 전체 이력</a>
+  </div>
+</div>
+```
+
+2순위 readiness class: `ready-now` / `ready-2y` / `not-ready`
+
+---
+
 ## 디자인 규칙 — 파일 작성 시 준수
 
 - 심의 MD 파일에 `<style>` 태그, inline style, font-family 지정을 추가하지 않는다.
   모든 스타일은 `custom.css`에서 전역 관리된다.
 - `PositionDebate` 컴포넌트의 클래스(`.pd-*`, `.radar-label` 등)에 이미 Pretendard 폰트가 적용되어 있다.
   별도 스타일 override 금지.
-- board/index.md 카드 날짜 형식: `{YYYY-MM-DD}, 1순위 : {후보자명}`
 
 ---
 
@@ -255,6 +290,19 @@ blocks: [
 
 ## git 커밋 규칙
 
-```
+커밋 전 반드시 로컬 빌드 검증 후 커밋한다. 빌드 실패 시 Vercel 배포가 깨진다.
+
+```bash
+# 1. 빌드 검증 (오류 없으면 "build complete" 출력)
+npm run docs:build
+
+# 2. 커밋 & 푸시
 git add docs/succession/ docs/.vitepress/theme/components/DebateList.vue docs/succession/board/index.md && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
 ```
+
+### ⛔ 빌드 오류 원인 목록
+
+| 원인 | 증상 | 방지법 |
+|------|------|--------|
+| `position-card-header` 빈 div | "Element is missing end tag" | 카드 구조 템플릿 준수 — header에 readiness-pill 항상 포함 |
+| HTML 수정 시 regex 범위 초과 | 의도치 않은 요소 제거 | regex 적용 전 대상 scope 확인 |
