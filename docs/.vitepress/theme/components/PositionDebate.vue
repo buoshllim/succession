@@ -33,7 +33,7 @@
           </tr>
           <tr v-if="phases && phases.length">
             <th>비즈니스 국면</th>
-            <td colspan="3">국면 {{ phases.join('·') }}</td>
+            <td colspan="3">{{ phases.map(p => phaseName(p)).join(' · ') }}</td>
           </tr>
         </tbody>
       </table>
@@ -70,7 +70,7 @@
           class="pd-phase-btn"
           :class="{ 'pd-phase-btn--active': selectedPhase === p }"
           @click="selectedPhase = selectedPhase === p ? null : p"
-        >국면 {{ p }}</button>
+        >{{ phaseName(p) }}</button>
         <button v-if="selectedPhase" class="pd-phase-btn pd-phase-clear" @click="selectedPhase = null">전체</button>
       </div>
 
@@ -228,6 +228,15 @@ const props = defineProps<{
   finalComment: string
   blocks?: any[]
 }>()
+
+const PHASES: Record<number, string> = {
+  1: 'AI·반도체 슈퍼사이클',
+  2: 'NAV 할인 해소기',
+  3: '포트폴리오 재편기',
+  4: '신규 투자 개척기',
+  5: '다운사이클 대응기',
+}
+const phaseName = (n: number) => PHASES[n] ?? `국면 ${n}`
 
 const COLORS = ['#0064FF', '#FF6B35', '#22C55E', '#A855F7', '#F59E0B']
 
