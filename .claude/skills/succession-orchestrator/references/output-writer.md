@@ -111,6 +111,108 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 
 ---
 
+## ⛔ 허용 필드 / 금지 필드 — 반드시 준수
+
+### bubble 블록
+```js
+// ✅ 허용 필드만
+{ type: "bubble", board: "vision-jensen", text: "...", changed: "up" }
+
+// ⛔ 아래 필드는 절대 사용 금지
+// speaker, director, directorLabel, label, body, confidence, weight, stance, id
+```
+
+### exchange 블록
+```js
+// ✅ 허용 필드만
+{
+  type: "exchange",
+  tension: "긴장 쌍 설명",   // ⛔ label, topic, title, phase 금지
+  messages: [...]
+}
+```
+
+### exchange 내 message 객체
+```js
+// ✅ JK 메시지
+{ speaker: "JK", text: "..." }
+
+// ✅ 이사 메시지 (speaker는 반드시 아래 human-readable 이름 사용)
+{ speaker: "Vision·Jensen Huang",  board: "vision-jensen",     text: "..." }
+{ speaker: "Scale·Jeff Bezos",     board: "scale-bezos",       text: "..." }
+{ speaker: "Integrity·Buffett",    board: "integrity-buffett",  text: "..." }
+{ speaker: "Principles·Dalio",     board: "principles-dalio",   text: "..." }
+{ speaker: "Transform·Nadella",    board: "transform-nadella",  text: "..." }
+{ speaker: "Innovation·Wood",      board: "innovation-wood",    text: "..." }
+{ speaker: "Performance·Welch",    board: "performance-welch",  text: "..." }
+{ speaker: "Inversion·Munger",     board: "inversion-munger",   text: "..." }
+{ speaker: "Execution·Musk",       board: "execution-musk",     text: "..." }
+{ speaker: "Lean·Sandberg",        board: "lean-sandberg",      text: "..." }
+
+// ⛔ 아래 필드명 금지
+// director, directorLabel, label, body, confidence, weight, stance
+// ⛔ speaker에 board 키값 직접 사용 금지 (예: speaker: "vision-jensen" ❌)
+// ⛔ speaker에 "()"형식 사용 금지 (예: speaker: "Jensen (vision)" ❌)
+// ⛔ speaker 이름에 공백 포함된 중점 사용 금지 (예: speaker: "Vision · Jensen Huang" ❌)
+// ⛔ speaker에 풀 이름 사용 금지 (예: "Integrity·Warren Buffett" ❌, "Inversion·Charlie Munger" ❌)
+//    → 반드시 위 10개 canonical 이름 중 정확히 일치하는 것만 사용
+```
+
+### closing 블록
+```js
+// ✅ 허용 필드만
+{ type: "closing", text: "JK 클로징..." }
+
+// ⛔ label 필드 금지 (예: label: "JK 최종 의결" ❌)
+```
+
+### section 블록 label 형식
+```js
+// ✅ 정확히 이 형식만 허용 (── 앞뒤 공백 포함)
+{ type: "section", label: "── Round 1: 이사 초기 평가 ──" }
+{ type: "section", label: "── Round 2: 긴장 쌍 토론 ──" }
+{ type: "section", label: "── Round 2 이후 이사 재발언 ──" }
+
+// ⛔ 금지 예시
+// "Round 1 — 이사 독립 평가"  ❌
+// "Round 1: 이사 초기 평가"   ❌ (── 없음)
+// "Phase 1"                   ❌
+```
+
+### finalDecision 형식
+```js
+// ✅ 반드시 이름 + 대시 + 준비도 이모지 포함
+finalDecision: "박진우 — 🟢 Ready Now"
+finalDecision: "홍길동 — 🟡 Ready in 2Y"
+
+// ⛔ 이름만 단독 사용 금지
+// finalDecision: "박진우"  ❌
+```
+
+### finalComment 형식
+```js
+// ✅ '1순위 후보자로 의결한다' 형식
+finalComment: "...를 {포지션} 1순위 후보자로 의결한다."
+
+// ⛔ '즉시 선임을 의결한다' 표현 금지
+```
+
+### blocks 최상위 구조 금지 패턴
+```js
+// ⛔ blocks 내에 speeches[], phase, title 같은 커스텀 구조 사용 금지
+// blocks는 반드시 section / bubble / exchange / closing 타입 객체의 flat 배열이어야 한다
+blocks: [
+  { type: "section", ... },
+  { type: "bubble",  ... },
+  { type: "exchange", ... },
+  { type: "closing", ... },
+]
+// ⛔ 아래 구조는 절대 금지
+// blocks: [{ phase: 1, title: "...", speeches: [...] }]  ❌
+```
+
+---
+
 ## 디자인 규칙 — 파일 작성 시 준수
 
 - 심의 MD 파일에 `<style>` 태그, inline style, font-family 지정을 추가하지 않는다.
