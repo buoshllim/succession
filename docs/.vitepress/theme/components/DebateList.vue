@@ -17,12 +17,33 @@
             :class="['al-date-all', { active: !selectedDate }]"
             @click="selectedDate = ''; currentPage = 1"
           >전체 날짜</button>
-          <input
-            type="date"
-            class="al-date-input"
-            v-model="selectedDate"
-            @change="currentPage = 1"
-          />
+          <div class="cal-toggle-wrap">
+            <button class="cal-toggle-btn" @click="calOpen = !calOpen">
+              {{ selectedDate || '날짜 선택' }}
+              <span class="cal-arrow">{{ calOpen ? '▲' : '▼' }}</span>
+            </button>
+            <div v-if="calOpen" class="cal-popup">
+              <div class="cal-nav">
+                <button class="cal-nav-btn" @click="calPrevMonth">‹</button>
+                <span class="cal-title">{{ calYear }}년 {{ calMonth + 1 }}월</span>
+                <button class="cal-nav-btn" @click="calNextMonth">›</button>
+              </div>
+              <div class="cal-grid">
+                <div v-for="d in ['일','월','화','수','목','금','토']" :key="d" class="cal-dow">{{ d }}</div>
+                <div
+                  v-for="cell in calCells"
+                  :key="cell.key"
+                  :class="['cal-cell', {
+                    'cal-empty': !cell.day,
+                    'cal-has': cell.hasDebate,
+                    'cal-none': cell.day && !cell.hasDebate,
+                    'cal-selected': selectedDate === cell.dateStr,
+                  }]"
+                  @click="cell.hasDebate && selectDate(cell.dateStr)"
+                >{{ cell.day || '' }}</div>
+              </div>
+            </div>
+          </div>
         </div>
         <span class="al-count">{{ filteredItems.length }}건</span>
       </div>
@@ -187,6 +208,52 @@ const selectedPosition = ref('')
 const selectedDate     = ref('')
 const currentPage      = ref(1)
 
+// ── 커스텀 캘린더 ─────────────────────────────────────────────────
+const debateDateSet = new Set(ALL_ITEMS.map(i => i.date))
+
+const now = new Date()
+const calYear  = ref(now.getFullYear())
+const calMonth = ref(now.getMonth())   // 0-based
+const calOpen  = ref(false)
+
+function calPrevMonth() {
+  if (calMonth.value === 0) { calYear.value--; calMonth.value = 11 }
+  else calMonth.value--
+}
+function calNextMonth() {
+  if (calMonth.value === 11) { calYear.value++; calMonth.value = 0 }
+  else calMonth.value++
+}
+
+const calCells = computed(() => {
+  const y = calYear.value
+  const m = calMonth.value
+  const firstDow = new Date(y, m, 1).getDay()   // 0=일
+  const daysInMonth = new Date(y, m + 1, 0).getDate()
+  const cells = []
+  for (let i = 0; i < firstDow; i++) cells.push({ key: `e${i}`, day: 0 })
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+    cells.push({ key: dateStr, day: d, dateStr, hasDebate: debateDateSet.has(dateStr) })
+  }
+  return cells
+})
+
+function selectDate(dateStr) {
+  selectedDate.value = dateStr
+  currentPage.value = 1
+  calOpen.value = false
+}
+
+// 달력 외부 클릭 시 닫기
+function onDocClick(e) {
+  if (!e.target.closest('.cal-toggle-wrap')) calOpen.value = false
+}
+onMounted(() => {
+  if (typeof document !== 'undefined') document.addEventListener('click', onDocClick)
+})
+// ─────────────────────────────────────────────────────────────────
+
 const vpRoute = useRoute()
 const positionChips = POSITIONS
 
@@ -279,6 +346,73 @@ const pagedItems = computed(() => {
 .al-date-all:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
 .al-date-all.active { background: var(--vp-c-brand-1); border-color: var(--vp-c-brand-1); color: #fff; }
 .al-count { font-size: 12px; color: var(--vp-c-text-3); margin-left: auto; }
+
+/* ── 커스텀 캘린더 ─────────────────────────────────────────── */
+.cal-toggle-wrap { position: relative; }
+.cal-toggle-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.cal-toggle-btn:hover { border-color: var(--vp-c-brand-1); }
+.cal-arrow { font-size: 10px; color: var(--vp-c-text-3); }
+.cal-popup {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 12px;
+  min-width: 224px;
+}
+.cal-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.cal-title { font-size: 13px; font-weight: 600; color: var(--vp-c-text-1); }
+.cal-nav-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--vp-c-text-2); font-size: 16px; padding: 2px 6px;
+  border-radius: 4px;
+}
+.cal-nav-btn:hover { background: var(--vp-c-bg-soft); color: var(--vp-c-text-1); }
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px;
+}
+.cal-dow {
+  text-align: center; font-size: 11px; font-weight: 600;
+  color: var(--vp-c-text-3); padding: 4px 0;
+}
+.cal-cell {
+  text-align: center; font-size: 12px;
+  padding: 5px 2px; border-radius: 6px;
+  line-height: 1;
+}
+.cal-empty { background: none; }
+.cal-has {
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+  cursor: pointer;
+}
+.cal-has:hover { background: var(--vp-c-bg-soft); }
+.cal-none {
+  color: var(--vp-c-text-3);
+  cursor: default;
+}
+.cal-selected {
+  background: var(--vp-c-brand-1) !important;
+  color: #fff !important;
+}
+/* ──────────────────────────────────────────────────────────── */
 
 .al-state { padding: 48px 0; text-align: center; color: var(--vp-c-text-3); font-size: 14px; }
 
