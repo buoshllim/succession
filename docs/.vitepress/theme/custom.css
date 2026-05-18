@@ -1812,7 +1812,6 @@ details.wb-guide > :not(summary) {
   color: var(--vp-c-text-3);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-family: var(--vp-font-family-mono);
   margin-bottom: 14px;
 }
 
@@ -1883,7 +1882,6 @@ details.wb-guide > :not(summary) {
 .pd-snap-current { color: var(--vp-c-text-3); font-size: 13px; }
 .pd-cand-name { font-size: 16px; font-weight: 700; color: var(--vp-c-text-1); }
 .pd-cand-type {
-  font-family: var(--vp-font-family-mono);
   font-size: 11px;
   color: var(--vp-c-text-3);
   background: var(--vp-c-bg-mute);
@@ -1921,14 +1919,13 @@ details.wb-guide > :not(summary) {
   transition: width 0.4s ease;
 }
 .pd-readiness-val {
-  font-family: var(--vp-font-family-mono);
   font-size: 12px;
   font-weight: 700;
   color: var(--vp-c-text-1);
   min-width: 32px;
+  font-variant-numeric: tabular-nums;
 }
 .pd-dissension {
-  font-family: var(--vp-font-family-mono);
   font-size: 11px;
   color: var(--vp-c-text-3);
 }
@@ -1942,7 +1939,6 @@ details.wb-guide > :not(summary) {
   margin-bottom: 16px;
 }
 .pd-radar-toggle {
-  font-family: var(--vp-font-family-mono);
   font-size: 12px;
   font-weight: 600;
   color: var(--vp-c-text-3);
@@ -1952,6 +1948,7 @@ details.wb-guide > :not(summary) {
   padding: 3px 12px;
   cursor: pointer;
   transition: all 0.15s ease;
+  font-family: inherit;
 }
 .pd-radar-toggle--active {
   color: var(--c-color);
@@ -1965,7 +1962,7 @@ details.wb-guide > :not(summary) {
 .pd-radar-svg { width: 100%; height: auto; }
 .radar-label {
   font-size: 11px;
-  font-family: var(--vp-font-family-mono);
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
   fill: var(--vp-c-text-2);
 }
 .pd-radar-legend {
