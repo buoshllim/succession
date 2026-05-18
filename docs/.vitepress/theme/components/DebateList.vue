@@ -40,7 +40,7 @@
         class="al-row"
       >
         <span class="al-row-name">{{ item.position }}</span>
-        <span class="al-row-decision">{{ item.decision }}</span>
+        <span class="al-row-decision"><span class="al-decision-label">1순위 후보자</span> {{ item.decision }}</span>
         <div class="al-right">
           <span class="al-readiness" :class="readinessClass(item.readiness)">{{ item.readiness }}</span>
           <span class="al-conf">{{ Math.round(item.readinessScore * 100) }}%</span>
@@ -195,7 +195,8 @@ const pagedItems = computed(() => {
   background: var(--vp-c-bg-soft);
 }
 .al-row-name { font-size: 14px; font-weight: 700; color: var(--vp-c-text-1); white-space: nowrap; min-width: 80px; }
-.al-row-decision { font-size: 13px; color: var(--vp-c-text-2); white-space: nowrap; }
+.al-row-decision { font-size: 13px; color: var(--vp-c-text-1); white-space: nowrap; }
+.al-decision-label { color: var(--vp-c-text-3); font-size: 12px; margin-right: 2px; }
 .al-right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
 
 .al-readiness {
