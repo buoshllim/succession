@@ -29,12 +29,12 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"><span class="readiness-pill pending">⬜ 심의 대기</span></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">투자MD</div>
     <div class="position-card-role">투자센터 MD</div>
-    <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
-    <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=투자MD" class="position-btn">📋 전체 이력</a></div>
+    <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:89%"></div></div><span class="readiness-val">89%</span></div>
+    <div class="position-card-date">2026-05-18 1순위 윤재혁</div>
+    <div class="position-card-footer"><a href="/succession/2026-05-18-1500-md" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=투자MD" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
