@@ -12,9 +12,7 @@ aside: false
 <div class="position-card-grid">
 
   <div class="position-card">
-    <div class="position-card-header">
-      
-    </div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">CIO</div>
     <div class="position-card-role">최고투자책임자</div>
     <div class="readiness-wrap">
@@ -29,7 +27,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">투자MD</div>
     <div class="position-card-role">투자센터 MD</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:89%"></div></div><span class="readiness-val">89%</span></div>
@@ -38,7 +36,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">AI혁신담당</div>
     <div class="position-card-role">Chief AI Innovation Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:82%"></div></div><span class="readiness-val">82%</span></div>
@@ -47,7 +45,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">AI/DT담당</div>
     <div class="position-card-role">AI·디지털전환 총괄</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:97%"></div></div><span class="readiness-val">97%</span></div>
@@ -56,7 +54,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">정보보호담당</div>
     <div class="position-card-role">Chief Information Security Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:87%"></div></div><span class="readiness-val">87%</span></div>
@@ -65,7 +63,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">전략담당</div>
     <div class="position-card-role">Chief Strategy Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:95%"></div></div><span class="readiness-val">95%</span></div>
@@ -74,7 +72,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">재무담당</div>
     <div class="position-card-role">Chief Financial Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
@@ -83,7 +81,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">법무담당</div>
     <div class="position-card-role">Chief Legal Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
@@ -92,7 +90,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">IR담당</div>
     <div class="position-card-role">Chief Investor Relations Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
@@ -101,7 +99,7 @@ aside: false
   </div>
 
   <div class="position-card">
-    <div class="position-card-header"></div>
+    <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">HR담당</div>
     <div class="position-card-role">Chief Human Resources Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:88%"></div></div><span class="readiness-val">88%</span></div>
