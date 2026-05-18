@@ -4,6 +4,7 @@ import AppearanceToggle from './components/AppearanceToggle.vue'
 import MobileDrawer from './components/MobileDrawer.vue'
 import BoardChat from './components/BoardChat.vue'
 import PositionDebate from './components/PositionDebate.vue'
+import DebateList from './components/DebateList.vue'
 import WeightBoard from './components/WeightBoard.vue'
 import BackToList from './components/BackToList.vue'
 import './custom.css'
@@ -13,6 +14,7 @@ export default {
   enhanceApp({ app }) {
     app.component('BoardChat', BoardChat)
     app.component('PositionDebate', PositionDebate)
+    app.component('DebateList', DebateList)
     app.component('WeightBoard', WeightBoard)
     app.component('BackToList', BackToList)
   },

@@ -28,7 +28,6 @@ export default defineConfig({
           text: '심의 이력',
           items: [
             { text: '전체 심의 이력 →', link: '/succession/list' },
-            { text: 'CIO — 2026-05-18', link: '/succession/2026-05-18-1423-cio' },
           ]
         }
       ],

@@ -302,12 +302,21 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
 
 ## Phase 5: 배포
 
-### 5-1. docs/succession/list.md 업데이트
+### 5-1. DebateList.vue ALL_ITEMS 배열 업데이트
 
-`전체 심의 이력` 테이블에 새 행 추가:
+`docs/.vitepress/theme/components/DebateList.vue`의 `ALL_ITEMS` 배열 맨 앞에 새 항목 추가:
 
-```markdown
-| {YYYY-MM-DD} | {HH:MM} | {포지션명} | {1순위 후보자명} | {🟢/🟡/🔴 준비도} | [→](/succession/{파일명}) |
+```js
+{
+  position: "{포지션명}",
+  positionSlug: "{슬러그}",
+  date: "{YYYY-MM-DD}",
+  time: "{HHMM}",
+  decision: "{1순위 후보자명}",
+  readiness: "🟢 Ready Now",  // 또는 🟡 Ready in 2Y / 🔴 Not Ready
+  readinessScore: 0.83,
+  url: "/succession/{YYYY-MM-DD}-{HHMM}-{슬러그}",
+},
 ```
 
 ### 5-2. docs/succession/board/index.md 업데이트
