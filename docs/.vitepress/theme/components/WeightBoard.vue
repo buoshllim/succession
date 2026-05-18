@@ -107,7 +107,7 @@ const PHASES = [
   },
   {
     id: 'new-invest', label: '신규 투자 개척기', color: '#7C3AED',
-    desc: 'T&G스퀘어 통한 VC 딜소싱, 해외 AI 투자 확대 구간. 투자·혁신 역량을 우선시한다.',
+    desc: '적극적인 딜 소싱, 해외 AI 투자 확대 구간. 투자·혁신 역량을 우선시한다.',
     adjust: { 'innovation-wood': +0.03, 'vision-jensen': +0.02, 'execution-musk': +0.02, 'performance-welch': -0.02, 'integrity-buffett': -0.02, 'lean-sandberg': -0.02 }
   },
   {
