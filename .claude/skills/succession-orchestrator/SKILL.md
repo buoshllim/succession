@@ -325,21 +325,19 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
 - `readiness-pill`: pending → ready-now / ready-2y / not-ready
 - `readiness-bar-fill width`: 0% → {readinessScore × 100}%
 - `readiness-val`: — → {준비도}%
-- `position-card-date`: 심의 기록 없음 → {날짜} · {1순위 후보자}
-- 최신 심의 링크: `/succession/debate/{슬러그}` → `/succession/{파일명}`
+- `position-card-date`: 심의 기록 없음 → `{YYYY-MM-DD}, 1순위 : {후보자명}`
+- 최신 심의 링크: `#` → `/succession/{파일명}`
 
-### 5-3. docs/.vitepress/config.mts 업데이트
+### 5-3. docs/.vitepress/config.mts — 수정 금지
 
-`/succession/` 사이드바 items에 새 심의 페이지 추가 (최신 4개 유지):
-
-```
-{ text: '{포지션} — {YYYY-MM-DD}', link: '/succession/{파일명}' }
-```
+**개별 심의 페이지 링크를 `/succession/` 사이드바에 추가하지 않는다.**
+심의 이력 탐색은 전체 심의 이력 페이지(`/succession/list`)에서만 제공한다.
+config.mts는 건드리지 않는다.
 
 ### 5-4. Git 커밋 및 배포
 
 ```
-git add docs/succession/ docs/.vitepress/config.mts && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
+git add docs/succession/ docs/.vitepress/theme/components/DebateList.vue docs/succession/board/index.md && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
 ```
 
 ---

@@ -111,14 +111,15 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 
 ---
 
-## config.mts 업데이트 규칙
+## config.mts 업데이트 — 금지
 
-심의 파일 작성 후 `docs/.vitepress/config.mts`의 **심의 이력 sidebar items**에 추가한다.
+개별 심의 페이지를 `/succession/` 사이드바에 추가하지 않는다.
+심의 이력 탐색은 `/succession/list` 페이지에서 DebateList 컴포넌트로 제공한다.
 
 ---
 
 ## git 커밋 규칙
 
 ```
-git add docs/succession/ docs/.vitepress/config.mts && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
+git add docs/succession/ docs/.vitepress/theme/components/DebateList.vue docs/succession/board/index.md && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
 ```
