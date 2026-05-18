@@ -131,17 +131,17 @@ const POSITIONS = [
 ]
 
 const BASE_WEIGHTS: Record<string, Record<string, number>> = {
-  //                         CIO   MD    CFO   CAIO  AIDT  CISO  CHRO  CSO   CLO   CIRO
-  'vision-jensen':      { CIO:0.22, MD:0.15, CFO:0.00, CAIO:0.30, AIDT:0.25, CISO:0.05, CHRO:0.02, CSO:0.18, CLO:0.00, CIRO:0.05 },
-  'scale-bezos':        { CIO:0.18, MD:0.12, CFO:0.10, CAIO:0.12, AIDT:0.15, CISO:0.08, CHRO:0.07, CSO:0.20, CLO:0.02, CIRO:0.20 },
-  'integrity-buffett':  { CIO:0.17, MD:0.22, CFO:0.25, CAIO:0.05, AIDT:0.05, CISO:0.15, CHRO:0.12, CSO:0.10, CLO:0.15, CIRO:0.25 },
-  'principles-dalio':   { CIO:0.15, MD:0.18, CFO:0.20, CAIO:0.08, AIDT:0.07, CISO:0.25, CHRO:0.10, CSO:0.15, CLO:0.28, CIRO:0.15 },
-  'transform-nadella':  { CIO:0.10, MD:0.05, CFO:0.05, CAIO:0.15, AIDT:0.18, CISO:0.05, CHRO:0.28, CSO:0.07, CLO:0.05, CIRO:0.07 },
-  'innovation-wood':    { CIO:0.12, MD:0.08, CFO:0.00, CAIO:0.18, AIDT:0.15, CISO:0.00, CHRO:0.00, CSO:0.15, CLO:0.00, CIRO:0.08 },
-  'performance-welch':  { CIO:0.05, MD:0.10, CFO:0.07, CAIO:0.05, AIDT:0.05, CISO:0.10, CHRO:0.22, CSO:0.02, CLO:0.07, CIRO:0.05 },
-  'inversion-munger': { CIO:0.03, MD:0.08, CFO:0.15, CAIO:0.03, AIDT:0.05, CISO:0.22, CHRO:0.04, CSO:0.03, CLO:0.25, CIRO:0.08 },
-  'execution-musk':     { CIO:0.00, MD:0.00, CFO:0.00, CAIO:0.22, AIDT:0.20, CISO:0.00, CHRO:0.00, CSO:0.05, CLO:0.00, CIRO:0.00 },
-  'lean-sandberg':      { CIO:0.00, MD:0.00, CFO:0.03, CAIO:0.05, AIDT:0.05, CISO:0.03, CHRO:0.25, CSO:0.05, CLO:0.05, CIRO:0.08 },
+  //                         CIO   MD    CFO   CAIO  AIDT  CISO  CHRO  CSO   CLO   CIRO  (각 열 합 = 1.00)
+  'vision-jensen':      { CIO:0.22, MD:0.15, CFO:0.00, CAIO:0.24, AIDT:0.21, CISO:0.05, CHRO:0.02, CSO:0.18, CLO:0.00, CIRO:0.05 },
+  'scale-bezos':        { CIO:0.18, MD:0.12, CFO:0.12, CAIO:0.10, AIDT:0.12, CISO:0.09, CHRO:0.06, CSO:0.20, CLO:0.02, CIRO:0.20 },
+  'integrity-buffett':  { CIO:0.17, MD:0.22, CFO:0.29, CAIO:0.04, AIDT:0.04, CISO:0.16, CHRO:0.11, CSO:0.10, CLO:0.17, CIRO:0.25 },
+  'principles-dalio':   { CIO:0.15, MD:0.18, CFO:0.24, CAIO:0.07, AIDT:0.06, CISO:0.27, CHRO:0.09, CSO:0.15, CLO:0.32, CIRO:0.15 },
+  'transform-nadella':  { CIO:0.10, MD:0.05, CFO:0.06, CAIO:0.12, AIDT:0.15, CISO:0.05, CHRO:0.25, CSO:0.07, CLO:0.06, CIRO:0.07 },
+  'innovation-wood':    { CIO:0.12, MD:0.08, CFO:0.00, CAIO:0.15, AIDT:0.12, CISO:0.00, CHRO:0.00, CSO:0.15, CLO:0.00, CIRO:0.08 },
+  'performance-welch':  { CIO:0.05, MD:0.10, CFO:0.08, CAIO:0.04, AIDT:0.04, CISO:0.11, CHRO:0.20, CSO:0.02, CLO:0.08, CIRO:0.05 },
+  'inversion-munger':   { CIO:0.01, MD:0.10, CFO:0.18, CAIO:0.02, AIDT:0.04, CISO:0.24, CHRO:0.04, CSO:0.03, CLO:0.29, CIRO:0.08 },
+  'execution-musk':     { CIO:0.00, MD:0.00, CFO:0.00, CAIO:0.18, AIDT:0.17, CISO:0.00, CHRO:0.00, CSO:0.05, CLO:0.00, CIRO:0.00 },
+  'lean-sandberg':      { CIO:0.00, MD:0.00, CFO:0.03, CAIO:0.04, AIDT:0.05, CISO:0.03, CHRO:0.23, CSO:0.05, CLO:0.06, CIRO:0.07 },
 }
 
 const BOARD_META: Record<string, { name: string; color: string }> = {
