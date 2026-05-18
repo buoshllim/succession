@@ -1,0 +1,62 @@
+# Profile 기본 
+사번
+이름
+포지션 후보군
+CL / 직급
+조직입사일
+생년
+나이
+Function
+최종학력
+언어 활용 능력
+자격증
+
+# Project History
+사번
+이름
+Project명
+역할 (Lead / Support)
+Asset / Function
+난이도
+기간
+성과
+
+# Performance History
+사번
+이름
+연도
+CL
+평가등급
+Credit
+평가자
+Feedback 요약
+
+
+# Feedback / Review Detail
+사번
+이름
+연도
+Self Review
+평가자 Feedback
+
+# Career / Appointment History
+사번
+이름
+시작일
+종료일
+조직
+직무
+발령 유형
+
+# External Career
+사번
+이름
+회사
+직무
+기간
+
+# Awards
+사번
+이름
+포상명
+연도

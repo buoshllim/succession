@@ -11,7 +11,7 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 - **단독 심의**: "Alpha 단독 심의" 또는 후보자 1명만 등록된 경우. 준비도 평가만.
 - **비교 심의 = 개별 준비도 평가 + 최적 후보 선발 동시 수행**: 각 후보자의 Ready Now/2Y/Not Ready를 구하고, 선택된 국면에서 누가 가장 적합한지 결론을 낸다.
 - **후보자 코드명 블라인드**: 실명 대신 코드명(Alpha, Beta, Gamma 등) 사용. 커리어·스펙은 그대로.
-- **출력 정책**: 포지션 스텁(`/debate/{포지션}.md`) 덮어쓰기. 누적 없음.
+- **출력 정책**: 심의별 독립 파일 신규 생성 — `docs/succession/{YYYY-MM-DD}-{HHMM}-{포지션슬러그}.md`. 누적됨.
 - **데이터 최소주의**: 코드명 + 현직 + 핵심 경력만 있어도 진행. 부족한 정보는 이사들이 확신도↓로 표현.
 
 ---
@@ -54,6 +54,21 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 | `knowledge/position-rules.md` | 포지션별 역량 기준·이사 가중치 테이블 + 선택된 국면 조정값 |
 | `knowledge/candidates/{코드명}.md` | 후보자별 프로파일 |
 | `knowledge/target-profiles/{포지션슬러그}.md` | 포지션별 이상적 후보 기준 (필수 역량·딜브레이커) |
+
+**포지션명 → 슬러그 매핑:**
+
+| 포지션명 (트리거·candidates role) | 슬러그 (파일명) |
+|----------------------------------|----------------|
+| CIO | cio |
+| 투자MD | md |
+| AI혁신담당 | caio |
+| AI/DT담당 | aidt |
+| 전략담당 | cso |
+| 재무담당 | cfo |
+| 법무담당 | clo |
+| IR담당 | ciro |
+| HR담당 | chro |
+| 정보보호담당 | ciso |
 
 ### 0-2. 후보자 프로파일 확인 및 생성
 
@@ -219,6 +234,20 @@ raw_score = Σ(이사 스탠스 점수 × 최종가중치)
 
 JK는 5단계 필터 적용 → 최종 준비도 확정 + 의장 코멘트 (2~3문장)
 
+**3-3. JK 축별 점수 산출 (스파이더 차트용)**
+
+JK가 각 후보자에 대해 아래 5개 차원 0~100 점수를 직접 산출한다:
+
+- **공통 3축**: `integrity` (신뢰·원칙) / `leadership` (리더십 성숙도) / `growth` (성장 궤도)
+- **포지션 특화 2축**: `knowledge/target-profiles/{포지션슬러그}.md`의 `spider_axes` 필드에서 로드
+
+산출 기준: 이사 발언, 토론 쟁점, 후보자 프로파일을 종합해 JK 관점에서 판단. 점수는 소수 없이 정수로.
+
+출력 형식 (후보자마다):
+```
+radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2슬러그}: 65 }
+```
+
 ---
 
 ## Phase 4: 출력 파일 작성
@@ -226,8 +255,8 @@ JK는 5단계 필터 적용 → 최종 준비도 확정 + 의장 코멘트 (2~3�
 **`references/output-writer.md`를 반드시 읽고 그 형식을 따른다.**
 
 ### 출력 정책
-- 파일 위치: `docs/succession/debate/{포지션슬러그}.md` **덮어쓰기** (누적 없음)
-- 포맷: Vue 컴포넌트 형식, 마지막 줄 `<BoardChat v-bind="debate" />`
+- 파일 위치: `docs/succession/{YYYY-MM-DD}-{HHMM}-{포지션슬러그}.md` **신규 생성** (누적됨)
+- 포맷: Vue 컴포넌트 형식, 마지막 줄 `<PositionDebate v-bind="debate" />`
 
 ### 섹션 순서
 1. 헤더 (포지션 + 심의 배너)
@@ -246,7 +275,7 @@ JK는 5단계 필터 적용 → 최종 준비도 확정 + 의장 코멘트 (2~3�
 ## Phase 5: 배포
 
 ```
-git add docs/succession/ && git commit -m "feat: {코드명} {포지션} {날짜} 이사회 심의 결과" && git push
+git add docs/succession/ docs/.vitepress/config.mts && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
 ```
 
 ---
