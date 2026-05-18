@@ -60,8 +60,8 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed, watch, onMounted } from 'vue'
+import { useRoute } from 'vitepress'
 
 const POSITIONS = [
   { id: '',     label: '전체' },
@@ -97,7 +97,7 @@ const selectedPosition = ref('')
 const selectedDate     = ref('')
 const currentPage      = ref(1)
 
-const route = useRoute()
+const vpRoute = useRoute()
 const positionChips = POSITIONS
 
 function selectPosition(id) {
@@ -105,15 +105,18 @@ function selectPosition(id) {
   currentPage.value = 1
 }
 
-watch(
-  () => route.query.position,
-  (p) => {
-    const val = typeof p === 'string' ? p : ''
-    selectedPosition.value = POSITIONS.some(pos => pos.id === val) ? val : ''
-    currentPage.value = 1
-  },
-  { immediate: true }
-)
+function applyQueryFilter() {
+  if (typeof window === 'undefined') return
+  const p = new URLSearchParams(window.location.search).get('position') ?? ''
+  selectedPosition.value = POSITIONS.some(pos => pos.id === p) ? p : ''
+  currentPage.value = 1
+}
+
+// VitePress의 route.path는 페이지 전환 시 반응적으로 변경됨
+// URL 업데이트(history.pushState)는 컴포넌트 마운트 전에 완료되므로
+// watch가 발화할 때 window.location.search는 이미 새 쿼리를 담고 있음
+watch(() => vpRoute.path, applyQueryFilter, { immediate: true })
+onMounted(applyQueryFilter)
 
 function readinessClass(r) {
   if (r.includes('Ready Now')) return 'pill-ready-now'
