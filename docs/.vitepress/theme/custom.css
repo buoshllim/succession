@@ -1625,16 +1625,85 @@ body {
    준비도 pill / 바 / 포지션 카드 그리드
 ═══════════════════════════════════════ */
 
-/* 준비도 pill 색상 */
-.readiness-pill.ready-now  { background: #DCFCE7; color: #14532D; }
-.readiness-pill.developing { background: #FEF9C3; color: #713F12; }
-.readiness-pill.not-ready  { background: #FEE2E2; color: #7F1D1D; }
-.readiness-pill.pending    { background: #F3F4F6; color: #374151; }
+/* 준비도 pill */
+.readiness-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px 4px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+.readiness-pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.readiness-pill.ready-now {
+  background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+  color: #15803D;
+  border-color: rgba(34,197,94,0.25);
+  box-shadow: 0 1px 4px rgba(34,197,94,0.12);
+}
+.readiness-pill.ready-now::before {
+  background: #22C55E;
+  box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
+  animation: pill-pulse 2.4s ease-in-out infinite;
+}
+.readiness-pill.developing, .readiness-pill.ready-2y {
+  background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+  color: #B45309;
+  border-color: rgba(245,158,11,0.25);
+  box-shadow: 0 1px 4px rgba(245,158,11,0.10);
+}
+.readiness-pill.developing::before, .readiness-pill.ready-2y::before {
+  background: #F59E0B;
+}
+.readiness-pill.not-ready {
+  background: linear-gradient(135deg, #FFF5F5, #FEE2E2);
+  color: #B91C1C;
+  border-color: rgba(239,68,68,0.2);
+  box-shadow: 0 1px 4px rgba(239,68,68,0.08);
+}
+.readiness-pill.not-ready::before { background: #EF4444; }
+.readiness-pill.pending {
+  background: #F3F4F6;
+  color: #6B7280;
+  border-color: rgba(0,0,0,0.08);
+}
+.readiness-pill.pending::before { background: #9CA3AF; }
 
-.dark .readiness-pill.ready-now  { background: #14532D; color: #DCFCE7; }
-.dark .readiness-pill.developing { background: #713F12; color: #FEF9C3; }
-.dark .readiness-pill.not-ready  { background: #7F1D1D; color: #FEE2E2; }
-.dark .readiness-pill.pending    { background: #374151; color: #F3F4F6; }
+@keyframes pill-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+
+.dark .readiness-pill.ready-now {
+  background: rgba(21,128,61,0.18);
+  color: #4ADE80;
+  border-color: rgba(74,222,128,0.2);
+  box-shadow: none;
+}
+.dark .readiness-pill.ready-now::before { background: #4ADE80; box-shadow: 0 0 0 2px rgba(74,222,128,0.15); }
+.dark .readiness-pill.developing, .dark .readiness-pill.ready-2y {
+  background: rgba(120,53,15,0.2);
+  color: #FCD34D;
+  border-color: rgba(252,211,77,0.15);
+  box-shadow: none;
+}
+.dark .readiness-pill.not-ready {
+  background: rgba(127,29,29,0.2);
+  color: #FCA5A5;
+  border-color: rgba(252,165,165,0.15);
+  box-shadow: none;
+}
+.dark .readiness-pill.pending { background: rgba(55,65,81,0.4); color: #9CA3AF; }
 
 /* 준비도 바 */
 .readiness-bar { background: var(--vp-c-bg-mute); border-radius: 4px; height: 6px; overflow: hidden; }
@@ -1650,6 +1719,18 @@ body {
 .readiness-wrap { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
 .readiness-val { font-size: 13px; font-weight: 600; color: var(--vp-c-text-1); min-width: 36px; }
 .position-card-date { font-size: 12px; color: var(--vp-c-text-3); margin-bottom: 12px; }
+.position-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.card-date { font-size: 11px; color: var(--vp-c-text-3); font-variant-numeric: tabular-nums; letter-spacing: 0.2px; }
+.card-pick { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: var(--vp-c-text-1); }
+.card-pick-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
 .position-card-footer { display: flex; gap: 8px; }
 /* 이사회 심의 기준 아코디언 */
 details.wb-guide {
