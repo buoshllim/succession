@@ -41,8 +41,8 @@
       <!-- 후보자 스냅샷 -->
       <div class="minutes-data">
         <div class="data-row" v-for="c in candidates" :key="c.name">
-          <span class="data-label">{{ c.name }}</span>
-          <span class="data-value">{{ c.current }}</span>
+          <span class="pd-snap-name">{{ c.name }}</span>
+          <span class="pd-snap-current">{{ c.current }}</span>
         </div>
       </div>
 
