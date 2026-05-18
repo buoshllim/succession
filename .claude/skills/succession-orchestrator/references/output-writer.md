@@ -111,6 +111,16 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 
 ---
 
+## 디자인 규칙 — 파일 작성 시 준수
+
+- 심의 MD 파일에 `<style>` 태그, inline style, font-family 지정을 추가하지 않는다.
+  모든 스타일은 `custom.css`에서 전역 관리된다.
+- `PositionDebate` 컴포넌트의 클래스(`.pd-*`, `.radar-label` 등)에 이미 Pretendard 폰트가 적용되어 있다.
+  별도 스타일 override 금지.
+- board/index.md 카드 날짜 형식: `{YYYY-MM-DD}, 1순위 : {후보자명}`
+
+---
+
 ## config.mts 업데이트 — 금지
 
 개별 심의 페이지를 `/succession/` 사이드바에 추가하지 않는다.
