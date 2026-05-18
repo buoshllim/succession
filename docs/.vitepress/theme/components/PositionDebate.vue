@@ -62,18 +62,6 @@
     <div class="pd-section">
       <div class="pd-section-title">후보자 준비도</div>
 
-      <!-- 국면 필터 -->
-      <div class="pd-phase-filter" v-if="phases && phases.length > 1">
-        <span class="pd-filter-label">국면별 랭킹</span>
-        <button
-          v-for="p in phases" :key="p"
-          class="pd-phase-btn"
-          :class="{ 'pd-phase-btn--active': selectedPhase === p }"
-          @click="selectedPhase = selectedPhase === p ? null : p"
-        >{{ phaseName(p) }}</button>
-        <button v-if="selectedPhase" class="pd-phase-btn pd-phase-clear" @click="selectedPhase = null">전체</button>
-      </div>
-
       <div class="pd-candidates">
         <div
           v-for="(c, i) in sortedCandidates" :key="c.name"
@@ -287,21 +275,9 @@ const visibleCandidates = computed(() =>
   props.candidates.filter(c => selectedCandidates.value.includes(c.name))
 )
 
-const selectedPhase = ref<number | null>(null)
-const sortedCandidates = computed(() => {
-  const list = [...props.candidates]
-  if (selectedPhase.value && props.phaseWinner) {
-    const winner = props.phaseWinner[selectedPhase.value]
-    list.sort((a, b) => {
-      if (a.name === winner) return -1
-      if (b.name === winner) return 1
-      return b.readinessScore - a.readinessScore
-    })
-  } else {
-    list.sort((a, b) => b.readinessScore - a.readinessScore)
-  }
-  return list
-})
+const sortedCandidates = computed(() =>
+  [...props.candidates].sort((a, b) => b.readinessScore - a.readinessScore)
+)
 
 // SVG 스파이더 차트
 const CX = 150, CY = 150, R = 95
