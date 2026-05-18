@@ -21,10 +21,10 @@ aside: false
       <div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:83%"></div></div>
       <span class="readiness-val">83%</span>
     </div>
-    <div class="position-card-date">2026-05-18 · 박진우</div>
+    <div class="position-card-date">2026-05-18 1순위 박진우</div>
     <div class="position-card-footer">
       <a href="/succession/2026-05-18-1423-cio" class="position-btn">💬 최신 심의</a>
-      <a href="/succession/list" class="position-btn">📋 전체 이력</a>
+      <a href="/succession/list?position=CIO" class="position-btn">📋 전체 이력</a>
     </div>
   </div>
 
@@ -34,7 +34,7 @@ aside: false
     <div class="position-card-role">투자센터 MD</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/md" class="position-btn">💬 회의록</a><a href="/succession/debate/md" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=투자MD" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -43,7 +43,7 @@ aside: false
     <div class="position-card-role">Chief AI Innovation Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/caio" class="position-btn">💬 회의록</a><a href="/succession/debate/caio" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=AI혁신담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -52,7 +52,7 @@ aside: false
     <div class="position-card-role">AI·디지털전환 총괄</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/aidt" class="position-btn">💬 회의록</a><a href="/succession/debate/aidt" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=AI%2FDT담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -61,7 +61,7 @@ aside: false
     <div class="position-card-role">Chief Information Security Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/ciso" class="position-btn">💬 회의록</a><a href="/succession/debate/ciso" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=정보보호담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -70,7 +70,7 @@ aside: false
     <div class="position-card-role">Chief Strategy Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/cso" class="position-btn">💬 회의록</a><a href="/succession/debate/cso" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=전략담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -79,7 +79,7 @@ aside: false
     <div class="position-card-role">Chief Financial Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/cfo" class="position-btn">💬 회의록</a><a href="/succession/debate/cfo" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=재무담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -88,7 +88,7 @@ aside: false
     <div class="position-card-role">Chief Legal Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/clo" class="position-btn">💬 회의록</a><a href="/succession/debate/clo" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=법무담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -97,7 +97,7 @@ aside: false
     <div class="position-card-role">Chief Investor Relations Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/ciro" class="position-btn">💬 회의록</a><a href="/succession/debate/ciro" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=IR담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
   <div class="position-card">
@@ -106,7 +106,7 @@ aside: false
     <div class="position-card-role">Chief Human Resources Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:0%"></div></div><span class="readiness-val">—</span></div>
     <div class="position-card-date">심의 기록 없음</div>
-    <div class="position-card-footer"><a href="/succession/debate/chro" class="position-btn">💬 회의록</a><a href="/succession/debate/chro" class="position-btn">📋 이력</a></div>
+    <div class="position-card-footer"><a href="#" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=HR담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
 </div>

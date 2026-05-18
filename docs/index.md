@@ -46,43 +46,43 @@ sidebar: false
     <span class="section-label">포지션별 심의</span>
   </div>
   <div class="position-grid-home">
-    <a href="/succession/list?position=cio" class="stock-card-home">
+    <a href="/succession/list?position=CIO" class="stock-card-home">
       <span class="stock-name">CIO</span>
       <span class="stock-ticker">최고투자책임자</span>
     </a>
-    <a href="/succession/list?position=md" class="stock-card-home">
+    <a href="/succession/list?position=투자MD" class="stock-card-home">
       <span class="stock-name">투자MD</span>
       <span class="stock-ticker">투자센터 MD</span>
     </a>
-    <a href="/succession/list?position=caio" class="stock-card-home">
+    <a href="/succession/list?position=AI혁신담당" class="stock-card-home">
       <span class="stock-name">AI혁신담당</span>
       <span class="stock-ticker">CAIO</span>
     </a>
-    <a href="/succession/list?position=aidt" class="stock-card-home">
+    <a href="/succession/list?position=AI%2FDT담당" class="stock-card-home">
       <span class="stock-name">AI/DT담당</span>
       <span class="stock-ticker">디지털전환</span>
     </a>
-    <a href="/succession/list?position=ciso" class="stock-card-home">
+    <a href="/succession/list?position=정보보호담당" class="stock-card-home">
       <span class="stock-name">정보보호담당</span>
       <span class="stock-ticker">CISO</span>
     </a>
-    <a href="/succession/list?position=cso" class="stock-card-home">
+    <a href="/succession/list?position=전략담당" class="stock-card-home">
       <span class="stock-name">전략담당</span>
       <span class="stock-ticker">CSO</span>
     </a>
-    <a href="/succession/list?position=cfo" class="stock-card-home">
+    <a href="/succession/list?position=재무담당" class="stock-card-home">
       <span class="stock-name">재무담당</span>
       <span class="stock-ticker">CFO</span>
     </a>
-    <a href="/succession/list?position=clo" class="stock-card-home">
+    <a href="/succession/list?position=법무담당" class="stock-card-home">
       <span class="stock-name">법무담당</span>
       <span class="stock-ticker">CLO</span>
     </a>
-    <a href="/succession/list?position=ciro" class="stock-card-home">
+    <a href="/succession/list?position=IR담당" class="stock-card-home">
       <span class="stock-name">IR담당</span>
       <span class="stock-ticker">CIRO</span>
     </a>
-    <a href="/succession/list?position=chro" class="stock-card-home">
+    <a href="/succession/list?position=HR담당" class="stock-card-home">
       <span class="stock-name">HR담당</span>
       <span class="stock-ticker">CHRO</span>
     </a>
