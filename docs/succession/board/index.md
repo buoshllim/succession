@@ -30,7 +30,7 @@ aside: false
     <div class="position-card-header"><span class="readiness-pill ready-now">🟢 Ready Now</span></div>
     <div class="position-card-name">투자MD</div>
     <div class="position-card-role">투자센터 MD</div>
-    <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:95%"></div></div><span class="readiness-val">95%</span></div>
+    <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:100%"></div></div><span class="readiness-val">100%</span></div>
     <div class="position-card-meta"><span class="card-date">2026-05-20</span><span class="card-pick"><span class="card-pick-label">1순위</span> 윤재혁</span><span class="card-pick-label rank2 ready-2y">2순위</span><span class="card-second-name">강지연</span></div>
     <div class="position-card-footer"><a href="/succession/2026-05-20-0240-md" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=투자MD" class="position-btn">📋 전체 이력</a></div>
   </div>

@@ -111,7 +111,7 @@ const ALL_ITEMS = [
     time: "0240",
     decision: "윤재혁",
     readiness: "🟢 Ready Now",
-    readinessScore: 0.95,
+    readinessScore: 1.00,
     dist: { g: 1, y: 3, r: 1 },
     url: "/succession/2026-05-20-0240-md",
   },
