@@ -105,6 +105,17 @@ const POSITIONS = [
 // ── 심의 데이터 (심의 완료 시 SKILL이 여기에 추가) ──────────────
 const ALL_ITEMS = [
   {
+    position: "투자MD",
+    positionSlug: "md",
+    date: "2026-05-20",
+    time: "0240",
+    decision: "윤재혁",
+    readiness: "🟢 Ready Now",
+    readinessScore: 0.95,
+    dist: { g: 1, y: 3, r: 1 },
+    url: "/succession/2026-05-20-0240-md",
+  },
+  {
     position: "HR담당",
     positionSlug: "chro",
     date: "2026-05-20",
