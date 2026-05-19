@@ -64,9 +64,9 @@
         <span class="al-row-decision"><span class="al-decision-label">1순위 후보자</span> {{ item.decision }}</span>
         <div class="al-right">
           <span class="al-dist">
-            <span class="dist-pill dist-g">🟢 Now {{ item.dist.g }}</span>
-            <span class="dist-pill dist-y">🟡 in 2Y {{ item.dist.y }}</span>
-            <span class="dist-pill dist-r">🔴 Not {{ item.dist.r }}</span>
+            <span class="dist-pill dist-g">🟢 Now: {{ item.dist.g }}</span>
+            <span class="dist-pill dist-y">🟡 in 2Y: {{ item.dist.y }}</span>
+            <span class="dist-pill dist-r">🔴 Not: {{ item.dist.r }}</span>
           </span>
           <span class="al-conf">{{ Math.round(item.readinessScore * 100) }}%</span>
           <span class="al-date">{{ item.date }} {{ item.time.slice(0,2) }}:{{ item.time.slice(2) }}</span>
