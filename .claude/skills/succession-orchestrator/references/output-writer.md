@@ -134,6 +134,10 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 // ✅ 허용 필드만
 { type: "bubble", board: "vision-jensen", text: "...", changed: "up" }
 
+// ✅ bubble 끝 스탠스 표기 형식 (확신도 괄호 표기 절대 금지)
+// "🟢 윤재혁 / 🟡 최민석 / 🟡 강지연 / 🔴 임소영"
+// ⛔ "(높음)" "(중간)" "(낮음)" 괄호 표기 금지 — 확신도는 내부 계산에만 사용, 출력 노출 금지
+
 // ⛔ 아래 필드는 절대 사용 금지
 // speaker, director, directorLabel, label, body, confidence, weight, stance, id
 ```

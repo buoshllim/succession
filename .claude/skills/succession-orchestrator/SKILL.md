@@ -34,7 +34,7 @@ description: 승계 이사회 오케스트레이터. "승계 심의", "이사회
 사용자에게 아래 형식으로 질문한다:
 
 ```
-현재 SK스퀘어가 처한 비즈니스 국면을 알려주세요. 복수 선택 가능합니다.
+현재 어떤 비즈니스 국면에서 심의를 진행하나요? 복수 선택 가능합니다.
 
 1. AI·반도체 슈퍼사이클 — HBM·AI 투자 집행, NAV 극대화 구간
 2. NAV 할인 해소기 — Korea Discount 정책 + 주주환원 공약 집행
@@ -117,7 +117,11 @@ status 값:
 
 ## Phase 1: 이사 병렬 독립 평가 (Round 1)
 
-**실행 모드: 서브에이전트 (병렬)**
+**실행 모드: Agent tool 병렬 spawn 필수**
+
+`Agent` 도구로 각 이사 에이전트를 병렬 spawn. 독립 컨텍스트에서 소울 파일을 읽고 평가 생성.
+
+⚠️ **인라인 시뮬레이션 절대 금지**: 오케스트레이터가 이사 발언을 직접 생성하는 방식은 사용하지 않는다. Rate limit·컨텍스트 제약이 발생해도 인라인으로 우회하지 말고, 가중치 우선순위에 따라 순차 처리한다.
 
 `knowledge/position-rules.md`에서 해당 포지션의 가중치를 확인한다.
 가중치 0.00인 이사는 Phase 1에서 제외한다.
@@ -179,12 +183,24 @@ board-lean-sandberg
 
 ### 2-1. 팀 구성
 
+**Step 1 — 팀 생성** (`members` 파라미터 없음):
 ```
 TeamCreate(
   team_name="succession-board",
-  members=["ceo-jk"] + 가중치 0.00 제외한 활성 이사 목록
+  description="{포지션명} 승계 이사회 토론"
 )
 ```
+
+**Step 2 — 팀원 개별 소환** (Agent 호출 시 `team_name` 지정으로 자동 합류):
+```
+Agent(subagent_type="ceo-jk",           team_name="succession-board", name="jk",     ...)
+Agent(subagent_type="board-vision-jensen", team_name="succession-board", name="jensen", ...)
+# ... 가중치 0.00 제외한 활성 이사 전원
+```
+
+> ⚠️ `TeamCreate`의 실제 파라미터는 `team_name`, `description`, `agent_type`만 존재한다. `members=` 형식은 지원되지 않으며, 팀원은 반드시 Agent 도구로 개별 소환해야 한다.
+
+> **Phase 1 → Phase 2 컨텍스트 연결**: Phase 2 이사는 Phase 1에서 독립 실행된 서브에이전트와 별개의 새 인스턴스다. 자신의 Phase 1 발언을 직접 기억하지 못하므로, spawn 시 **Phase 1.5 compact summary를 초기 컨텍스트로 반드시 전달**해야 한다. JK도 동일하게 compact summary를 받아 시작한다.
 
 ### 2-2. 쟁점 식별
 
@@ -197,6 +213,8 @@ Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **�
 
 ### 2-3. 토론 진행
 
+> **팀 메시지 전달 방식**: 팀원(이사)의 응답은 오케스트레이터(JK)에게 자동 전달된다. 이사가 별도로 `SendMessage`를 호출할 필요 없다. JK만 `SendMessage`로 이사에게 메시지를 보내면 된다.
+
 각 쟁점마다:
 1. JK(의장)가 `SendMessage`로 쟁점 A에게 B의 논거를 전달하며 반박 요청
 2. A가 응답 (구체적 반론, 3~4문장)
@@ -206,8 +224,6 @@ Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **�
 6. 쟁점 이사 중 1명이 스탠스 변경 가능 (조건부 동의 포함)
 
 각 exchange는 **최소 6~8개 messages**를 포함해야 한다.
-
-모든 토론 내역은 `_workspace/debate-log.md`에 실시간 저장한다.
 
 ### 2-4. Round 2 스탠스 확정
 
@@ -219,6 +235,8 @@ Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **�
 ## Phase 2.5: Round 2 이후 이사 재발언
 
 **Round 2 토론을 지켜본 이사 6~7명이 추가 발언한다.** (bubble 형식)
+
+JK가 `SendMessage`로 각 이사에게 Round 2 토론 요약을 전달하며 재발언을 요청한다. 발언하지 않은 이사를 우선 지목한다.
 
 재발언 규칙:
 - Round 2 토론에서 제기된 논점에 반응하는 내용 포함 (단순 반복 금지)
@@ -275,6 +293,8 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
 
 **`references/output-writer.md`를 반드시 읽고 그 형식을 따른다.**
 
+출력 파일 작성 시 Phase 1.5 compact summary와 Phase 2 토론 내역(오케스트레이터 컨텍스트)을 함께 참조한다.
+
 ### 출력 정책
 - 파일 위치: `docs/succession/{YYYY-MM-DD}-{HHMM}-{포지션슬러그}.md` **신규 생성** (누적됨)
 - 포맷: Vue 컴포넌트 형식, 마지막 줄 `<PositionDebate v-bind="debate" />`
@@ -321,7 +341,7 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
 },
 ```
 
-> `dist`는 candidates 배열의 readiness 분포를 집계한다. 전체 후보군의 역량 분포를 리스트 카드에 표시하는 데 사용된다.
+> `dist`는 candidates 배열의 readiness 분포를 집계한다. 전체 후보군의 역량 분포를 리스트 카드에 표시하는 데 사용된다. 계산: `g` = 🟢 Ready Now 후보자 수, `y` = 🟡 Ready in 2Y 후보자 수, `r` = 🔴 Not Ready 후보자 수 (candidates 배열에서 직접 집계).
 
 ### 5-2. docs/succession/board/index.md 업데이트
 
@@ -340,7 +360,13 @@ config.mts는 건드리지 않는다.
 
 ### 5-4. Git 커밋 및 배포
 
-```
+커밋 전 반드시 빌드 검증 후 진행한다. 빌드 실패 시 Vercel 배포가 깨진다.
+
+```bash
+# 1. 빌드 검증
+npm run docs:build
+
+# 2. 성공 확인 후 커밋 & 푸시
 git add docs/succession/ docs/.vitepress/theme/components/DebateList.vue docs/succession/board/index.md && git commit -m "feat: {포지션} {날짜}-{HHMM} 이사회 심의 결과" && git push
 ```
 
@@ -358,7 +384,7 @@ git add docs/succession/ docs/.vitepress/theme/components/DebateList.vue docs/su
 "손민수 단독 심의해줘"
 
 # 프로파일 생성 + 심의
-"CIO 심의해줘. Delta 후보도 추가해.
+"CIO 심의해줘. 김철수 후보도 추가해.
 현직: SK텔레콤 AI사업본부장, 8년차
 경력: AI 서비스 3개 런칭, 연매출 800억 달성
 강점: 실행력, 기술-비즈니스 연결
