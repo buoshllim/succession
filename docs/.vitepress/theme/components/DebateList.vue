@@ -63,12 +63,11 @@
         <span class="al-row-name">{{ item.position }}</span>
         <span class="al-row-decision"><span class="al-decision-label">1순위 후보자</span> {{ item.decision }}</span>
         <div class="al-right">
-          <span class="al-dist" title="후보군 분포">
-            <span class="dist-g">●{{ item.dist.g }}</span>
-            <span class="dist-y">●{{ item.dist.y }}</span>
-            <span class="dist-r">●{{ item.dist.r }}</span>
+          <span class="al-dist">
+            <span class="dist-pill dist-g">🟢 Now {{ item.dist.g }}</span>
+            <span class="dist-pill dist-y">🟡 in 2Y {{ item.dist.y }}</span>
+            <span class="dist-pill dist-r">🔴 Not {{ item.dist.r }}</span>
           </span>
-          <span class="al-readiness" :class="readinessClass(item.readiness)">{{ item.readiness }}</span>
           <span class="al-conf">{{ Math.round(item.readinessScore * 100) }}%</span>
           <span class="al-date">{{ item.date }} {{ item.time.slice(0,2) }}:{{ item.time.slice(2) }}</span>
         </div>
@@ -475,10 +474,11 @@ const pagedItems = computed(() => {
 .pill-ready-2y  { background: rgba(245,158,11,0.1); color: #D97706; }
 .pill-not-ready { background: rgba(239,68,68,0.1);  color: #DC2626; }
 
-.al-dist { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.dist-g { color: #16A34A; }
-.dist-y { color: #D97706; }
-.dist-r { color: #DC2626; }
+.al-dist { display: flex; align-items: center; gap: 4px; }
+.dist-pill { font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 8px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dist-g { background: rgba(34,197,94,0.12); color: #16A34A; }
+.dist-y { background: rgba(245,158,11,0.12); color: #D97706; }
+.dist-r { background: rgba(239,68,68,0.12); color: #DC2626; }
 
 .al-conf { font-size: 12px; font-weight: 700; color: var(--vp-c-text-2); white-space: nowrap; min-width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
 .al-date { font-size: 12px; color: var(--vp-c-text-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
