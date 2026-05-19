@@ -4,6 +4,16 @@
 
 ---
 
+## ⚠️ 용어 표준 (절대 변경 금지)
+
+| 구분 | 표준 용어 | 금지 용어 |
+|------|---------|---------|
+| Round 2 섹션 레이블 | `── Round 2: 핵심 쟁점 대결 ──` | 긴장 쌍 토론, tension pair |
+| 개별 쟁점 | `쟁점 1:`, `쟁점 2:` | 긴장 쌍 1, tension 1 |
+| exchange.tension 필드 | `쟁점 N: A vs B — {설명}` | 긴장 쌍 N |
+
+---
+
 ## 파일 경로 규칙
 
 ```
@@ -86,10 +96,10 @@ const debate = {
       // ⛔ "[압축]" 등 비표준 요약 포맷 사용 금지 — 반드시 자연어 발언 형태로 작성
     },
     // ... 나머지 이사들 (투표 참여 이사 전원)
-    { type: "section", label: "── Round 2: 긴장 쌍 토론 ──" },
+    { type: "section", label: "── Round 2: 핵심 쟁점 대결 ──" },
     {
       type: "exchange",
-      tension: "{긴장 쌍 설명}",
+      tension: "{핵심 쟁점 설명}",
       messages: [
         { speaker: "JK", text: "의장 질문..." },
         { speaker: "Vision·Jensen Huang", board: "vision-jensen", text: "응답..." },
@@ -133,7 +143,7 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 // ✅ 허용 필드만
 {
   type: "exchange",
-  tension: "긴장 쌍 설명",   // ⛔ label, topic, title, phase 금지
+  tension: "핵심 쟁점 설명",   // ⛔ label, topic, title, phase 금지
   messages: [...]
 }
 ```
@@ -142,7 +152,7 @@ board 키는 `.claude/agents/board-{키}.md` 파일명에서 `board-` 제거한 
 ```js
 // ✅ 반드시 JK 의장 질문으로 시작
 messages: [
-  { speaker: "JK", text: "의장 질문 — 이 exchange의 긴장 쌍을 설명하고 이사들에게 논쟁을 유도..." },
+  { speaker: "JK", text: "의장 질문 — 이 exchange의 쟁점을 설명하고 이사들에게 논쟁을 유도..." },
   { speaker: "Vision·Jensen Huang", board: "vision-jensen", text: "..." },
   // ...
 ]
@@ -190,7 +200,7 @@ messages: [
 ```js
 // ✅ 허용되는 section 라벨은 정확히 아래 3개뿐 (── 앞뒤 공백 포함)
 { type: "section", label: "── Round 1: 이사 초기 평가 ──" }
-{ type: "section", label: "── Round 2: 긴장 쌍 토론 ──" }
+{ type: "section", label: "── Round 2: 핵심 쟁점 대결 ──" }
 { type: "section", label: "── Round 2 이후 이사 재발언 ──" }
 
 // ⛔ 금지 예시

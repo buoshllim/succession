@@ -63,6 +63,11 @@
         <span class="al-row-name">{{ item.position }}</span>
         <span class="al-row-decision"><span class="al-decision-label">1순위 후보자</span> {{ item.decision }}</span>
         <div class="al-right">
+          <span class="al-dist" title="후보군 분포">
+            <span class="dist-g">●{{ item.dist.g }}</span>
+            <span class="dist-y">●{{ item.dist.y }}</span>
+            <span class="dist-r">●{{ item.dist.r }}</span>
+          </span>
           <span class="al-readiness" :class="readinessClass(item.readiness)">{{ item.readiness }}</span>
           <span class="al-conf">{{ Math.round(item.readinessScore * 100) }}%</span>
           <span class="al-date">{{ item.date }} {{ item.time.slice(0,2) }}:{{ item.time.slice(2) }}</span>
@@ -108,6 +113,7 @@ const ALL_ITEMS = [
     decision: "문성호",
     readiness: "🟢 Ready Now",
     readinessScore: 0.87,
+    dist: { g: 1, y: 3, r: 1 },
     url: "/succession/2026-05-18-1550-ciso",
   },
   {
@@ -118,6 +124,7 @@ const ALL_ITEMS = [
     decision: "손민수",
     readiness: "🟢 Ready Now",
     readinessScore: 0.88,
+    dist: { g: 1, y: 3, r: 1 },
     url: "/succession/2026-05-18-1545-chro",
   },
   {
@@ -128,6 +135,7 @@ const ALL_ITEMS = [
     decision: "엄태윤",
     readiness: "🟢 Ready Now",
     readinessScore: 0.88,
+    dist: { g: 1, y: 3, r: 1 },
     url: "/succession/2026-05-18-1540-ciro",
   },
   {
@@ -138,6 +146,7 @@ const ALL_ITEMS = [
     decision: "허준영",
     readiness: "🟢 Ready Now",
     readinessScore: 0.88,
+    dist: { g: 1, y: 3, r: 1 },
     url: "/succession/2026-05-18-1535-clo",
   },
   {
@@ -148,6 +157,7 @@ const ALL_ITEMS = [
     decision: "심재원",
     readiness: "🟢 Ready Now",
     readinessScore: 0.875,
+    dist: { g: 2, y: 2, r: 1 },
     url: "/succession/2026-05-18-1530-cfo",
   },
   {
@@ -158,6 +168,7 @@ const ALL_ITEMS = [
     decision: "고은서",
     readiness: "🟢 Ready Now",
     readinessScore: 0.95,
+    dist: { g: 1, y: 1, r: 3 },
     url: "/succession/2026-05-18-1525-cso",
   },
   {
@@ -168,6 +179,7 @@ const ALL_ITEMS = [
     decision: "장민호",
     readiness: "🟢 Ready Now",
     readinessScore: 0.97,
+    dist: { g: 2, y: 2, r: 1 },
     url: "/succession/2026-05-18-1520-aidt",
   },
   {
@@ -178,6 +190,7 @@ const ALL_ITEMS = [
     decision: "오현우",
     readiness: "🟢 Ready Now",
     readinessScore: 0.82,
+    dist: { g: 2, y: 2, r: 2 },
     url: "/succession/2026-05-18-1515-caio",
   },
   {
@@ -188,6 +201,7 @@ const ALL_ITEMS = [
     decision: "윤재혁",
     readiness: "🟢 Ready Now",
     readinessScore: 0.885,
+    dist: { g: 2, y: 2, r: 1 },
     url: "/succession/2026-05-18-1500-md",
   },
   {
@@ -198,6 +212,7 @@ const ALL_ITEMS = [
     decision: "정혜원",
     readiness: "🟢 Ready Now",
     readinessScore: 0.865,
+    dist: { g: 1, y: 2, r: 2 },
     url: "/succession/2026-05-19-1835-cio",
   },
   {
@@ -208,6 +223,7 @@ const ALL_ITEMS = [
     decision: "박진우",
     readiness: "🟢 Ready Now",
     readinessScore: 0.83,
+    dist: { g: 1, y: 3, r: 1 },
     url: "/succession/2026-05-18-1423-cio",
   },
 ]
@@ -459,12 +475,18 @@ const pagedItems = computed(() => {
 .pill-ready-2y  { background: rgba(245,158,11,0.1); color: #D97706; }
 .pill-not-ready { background: rgba(239,68,68,0.1);  color: #DC2626; }
 
+.al-dist { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dist-g { color: #16A34A; }
+.dist-y { color: #D97706; }
+.dist-r { color: #DC2626; }
+
 .al-conf { font-size: 12px; font-weight: 700; color: var(--vp-c-text-2); white-space: nowrap; min-width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
 .al-date { font-size: 12px; color: var(--vp-c-text-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 @media (max-width: 480px) {
   .al-row { gap: 7px; padding: 10px 12px; }
   .al-row-decision { display: none; }
+  .al-dist { display: none; }
   .al-date { display: none; }
 }
 

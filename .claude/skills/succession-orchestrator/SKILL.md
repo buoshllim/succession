@@ -185,24 +185,24 @@ TeamCreate(
 )
 ```
 
-### 2-2. 긴장 쌍 식별
+### 2-2. 쟁점 식별
 
-Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **최대 4개** 긴장 쌍 식별
+Phase 1.5 compact summary 기준 → 스탠스 거리 + 가중치 합으로 **최대 4개** 쟁점 식별
 
-긴장 쌍 우선순위:
+쟁점 우선순위:
 1. 고가중치 이사 간 충돌
 2. 준비도 반대 의견 (🟢 vs 🔴)
 3. 중간 확신도 이사 — 토론으로 스탠스 변화 가능성 높음
 
 ### 2-3. 토론 진행
 
-각 긴장 쌍마다:
-1. JK(의장)가 `SendMessage`로 긴장 쌍 A에게 B의 논거를 전달하며 반박 요청
+각 쟁점마다:
+1. JK(의장)가 `SendMessage`로 쟁점 A에게 B의 논거를 전달하며 반박 요청
 2. A가 응답 (구체적 반론, 3~4문장)
 3. B가 재반론 (A의 논거에 직접 반응)
 4. **JK가 중재 개입** — 논점을 좁히거나 절충 방향 제시
 5. **방관자 이사 1명 지목** — 논점과 가장 관련성 높은 이사에게 의견 요청 (새 관점 투입)
-6. 긴장 쌍 이사 중 1명이 스탠스 변경 가능 (조건부 동의 포함)
+6. 쟁점 이사 중 1명이 스탠스 변경 가능 (조건부 동의 포함)
 
 각 exchange는 **최소 6~8개 messages**를 포함해야 한다.
 
@@ -286,8 +286,8 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
 1. { type: "section", label: "── Round 1: 이사 초기 평가 ──" }
    → 활성 이사 전원 bubble (스탠스 포함, 각 3~5문장)
 
-2. { type: "section", label: "── Round 2: 긴장 쌍 토론 ──" }
-   → exchange (긴장 쌍별, messages 6~8개 이상, JK 중재 포함)
+2. { type: "section", label: "── Round 2: 핵심 쟁점 대결 ──" }
+   → exchange (쟁점별, messages 6~8개 이상, JK 중재 포함)
 
 3. { type: "section", label: "── Round 2 이후 이사 재발언 ──" }
    → bubble 6~7명 (Round 2 논점 반응, 일부 changed 포함)
@@ -315,9 +315,12 @@ radar: { integrity: 82, leadership: 75, growth: 88, {축1슬러그}: 70, {축2�
   decision: "{1순위 후보자명}",
   readiness: "🟢 Ready Now",  // 또는 🟡 Ready in 2Y / 🔴 Not Ready
   readinessScore: 0.83,
+  dist: { g: {🟢 Ready Now 후보자 수}, y: {🟡 Ready in 2Y 후보자 수}, r: {🔴 Not Ready 후보자 수} },
   url: "/succession/{YYYY-MM-DD}-{HHMM}-{슬러그}",
 },
 ```
+
+> `dist`는 candidates 배열의 readiness 분포를 집계한다. 전체 후보군의 역량 분포를 리스트 카드에 표시하는 데 사용된다.
 
 ### 5-2. docs/succession/board/index.md 업데이트
 
