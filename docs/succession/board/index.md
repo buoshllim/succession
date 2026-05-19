@@ -16,12 +16,12 @@ aside: false
     <div class="position-card-name">CIO</div>
     <div class="position-card-role">최고투자책임자</div>
     <div class="readiness-wrap">
-      <div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:83%"></div></div>
-      <span class="readiness-val">83%</span>
+      <div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:87%"></div></div>
+      <span class="readiness-val">87%</span>
     </div>
-    <div class="position-card-meta"><span class="card-date">2026-05-18</span><span class="card-pick"><span class="card-pick-label">1순위</span> 박진우</span><span class="card-pick-label rank2 ready-2y">2순위</span><span class="card-second-name">이승현</span></div>
+    <div class="position-card-meta"><span class="card-date">2026-05-19</span><span class="card-pick"><span class="card-pick-label">1순위</span> 정혜원</span><span class="card-pick-label rank2 ready-now">2순위</span><span class="card-second-name">박진우</span></div>
     <div class="position-card-footer">
-      <a href="/succession/2026-05-18-1423-cio" class="position-btn">💬 최신 심의</a>
+      <a href="/succession/2026-05-19-1835-cio" class="position-btn">💬 최신 심의</a>
       <a href="/succession/list?position=CIO" class="position-btn">📋 전체 이력</a>
     </div>
   </div>

@@ -193,6 +193,16 @@ const ALL_ITEMS = [
   {
     position: "CIO",
     positionSlug: "cio",
+    date: "2026-05-19",
+    time: "1835",
+    decision: "정혜원",
+    readiness: "🟢 Ready Now",
+    readinessScore: 0.865,
+    url: "/succession/2026-05-19-1835-cio",
+  },
+  {
+    position: "CIO",
+    positionSlug: "cio",
     date: "2026-05-18",
     time: "1423",
     decision: "박진우",
