@@ -197,6 +197,34 @@ messages: [
 // ⛔ label 필드 금지 (예: label: "JK 최종 의결" ❌)
 ```
 
+---
+
+## ⚠️ 이사 호칭 표준 (절대 준수)
+
+| 구분 | 표준 | 금지 |
+|------|------|------|
+| `tension` 필드 | `Vision 담당 Jensen 이사 vs Integrity 담당 Buffett 이사` | `vision-jensen vs integrity-buffett`, `Vision·Jensen vs Integrity·Buffett` |
+| `text` 필드 (대화, closing 등) | `Jensen 이사`, `Buffett 이사` | `vision-jensen`, `Vision·Jensen`, `Scale·Bezos 이사` |
+
+**이사 역할·이름 매핑:**
+
+| 슬러그 | tension 표기 | text 표기 |
+|--------|------------|---------|
+| vision-jensen | Vision 담당 Jensen 이사 | Jensen 이사 |
+| transform-nadella | Transform 담당 Nadella 이사 | Nadella 이사 |
+| scale-bezos | Scale 담당 Bezos 이사 | Bezos 이사 |
+| integrity-buffett | Integrity 담당 Buffett 이사 | Buffett 이사 |
+| principles-dalio | Principles 담당 Dalio 이사 | Dalio 이사 |
+| innovation-wood | Innovation 담당 Wood 이사 | Wood 이사 |
+| lean-sandberg | Lean 담당 Sandberg 이사 | Sandberg 이사 |
+| performance-welch | Performance 담당 Welch 이사 | Welch 이사 |
+| inversion-munger | Inversion 담당 Munger 이사 | Munger 이사 |
+| execution-musk | Execution 담당 Musk 이사 | Musk 이사 |
+
+> `board:` 필드의 슬러그(예: `board: "vision-jensen"`)는 컴포넌트 내부 식별자이므로 그대로 유지. 단, `text:`/`tension:` 등 사람이 읽는 텍스트 필드에는 절대 슬러그 사용 금지.
+
+---
+
 #### ⚠️ closing 작성 기준 (실제 이사회 의결 선언 톤 필수)
 
 **금지:**
