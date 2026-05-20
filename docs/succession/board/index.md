@@ -104,7 +104,7 @@ aside: false
     <div class="position-card-role">Chief Human Resources Officer</div>
     <div class="readiness-wrap"><div class="readiness-bar" style="flex:1"><div class="readiness-bar-fill" style="width:97%"></div></div><span class="readiness-val">97%</span></div>
     <div class="position-card-meta"><span class="card-date">2026-05-20</span><span class="card-pick"><span class="card-pick-label">1순위</span> 손민수</span><span class="card-pick-label rank2 ready-2y">2순위</span><span class="card-second-name">위서영</span></div>
-    <div class="position-card-footer"><a href="/succession/2026-05-20-0109-chro" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=HR담당" class="position-btn">📋 전체 이력</a></div>
+    <div class="position-card-footer"><a href="/succession/2026-05-20-1630-chro" class="position-btn">💬 최신 심의</a><a href="/succession/list?position=HR담당" class="position-btn">📋 전체 이력</a></div>
   </div>
 
 </div>
